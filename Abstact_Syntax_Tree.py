@@ -1,3 +1,4 @@
+# whnf is short for weak head normal form: which means the expression can no longer be simplief further. The work 'weak' means that although the inner part may not be its simplest form: for example: lambda x: 1+1 is in whnf! While 1+1 is not.
 class Variable (object):
     def __init__ (self, name: str):
         self.name = name
