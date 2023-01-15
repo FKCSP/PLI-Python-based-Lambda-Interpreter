@@ -6,12 +6,12 @@
 
 Conditional branching expression should be like:
 
-`if (expr) then expr else expr
+`if (expr) then expr else expr`
 
 All the lambda expression should be like this:
 
-`\(ID.expr)
+`\(ID.expr)`
 
 Try out simple conditional branching:
 
-`if (-10 > -1) then 30\*20 else 20%2
+`if (-10 > -1) then 30\*20 else 20%2`
