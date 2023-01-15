@@ -25,8 +25,11 @@ from ply.yacc import yacc
 # --- Tokenizer
 
 # All tokens must be named in advance.
-tokens = ( 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN',
-           'NAME', 'NUMBER' )
+tokens = ( 
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 
+    'LPAREN', 'RPAREN',
+    'NAME', 'NUMBER' 
+)
 
 # Ignored characters
 t_ignore = ' \t'
