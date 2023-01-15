@@ -110,7 +110,7 @@ def p_expr_arith(p):
     elif p[2] == '/' and p[3] != 0:
         p[0] = p[1] / p[3]
     elif p[2] == '%' and p[3] != 0:
-        p[0] = p[1] + p[3]
+        p[0] = p[1] % p[3]
     else:
         print("error!")
         exit(0)
