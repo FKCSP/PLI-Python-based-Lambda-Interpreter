@@ -1,5 +1,6 @@
 from my_lexer import lexer
 from my_parser import parser
+from interpreter import multi_step_beta_reduce
 import cmd
 
 PROMPT = '>>>'
@@ -13,7 +14,6 @@ class main_loop(cmd.Cmd):
         cmd.Cmd.__init__ (self)
         self.prompt = PROMPT
         self.intro = INTRO_STR
-
 
     def default(self, s):
         input_str = parser.parse(s)
