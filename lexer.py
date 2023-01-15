@@ -4,7 +4,8 @@ from ply.lex import lex
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
-    'then': 'THEN'
+    'then': 'THEN',
+    'rec' : 'REC'
 }
 
 # All tokens must be named in advance.
@@ -17,14 +18,17 @@ tokens = (
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'MOD',
     # conparison
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NEQ',
-    # bracket
-    'LPAREN', 'RPAREN',
     # conditional
-    'IF', 'THEN', 'ELSE'
+    'IF', 'THEN', 'ELSE',
+    # recursive function
+    'REC'
 )
 
 # Ignored characters
 t_ignore = ' \t'
+
+# literals
+literals = ['(', ')', '.']
 
 # Token matching rules are written as regexs
 t_LAMBDA = r'\\'
@@ -32,8 +36,7 @@ t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+t_MOD = r'%'
 t_LE = r'<='
 t_LT = r'<'
 t_GE = r'>='
@@ -48,17 +51,17 @@ def t_NAT(t):
     t.value = int(t.value)
     return t
 
-# Error handler for illegal characters
-def t_error(t):
-    print(f'Illegal character {t.value[0]!r}')
-    t.lexer.skip(1)
-
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     # 检查是不是关键词，如果不是，那么默认返回，NAME，
     t.type = reserved.get(t.value, 'ID')
     return t
 
+
+# Error handler for illegal characters
+def t_error(t):
+    print(f'Illegal character {t.value[0]!r}')
+    t.lexer.skip(1)
 lexer = lex()
 
 
@@ -69,7 +72,8 @@ if __name__ == '__main__':
         s = input(">>>")
         lexer.input(s)
 
-        for tok in lexer:
+        while True:
+            tok = lexer.token()
             if not tok:
                 break
             print(tok)
