@@ -1,6 +1,6 @@
 # Python based Lambda Interpreter
 
-### The input format is strictly restricted, illegal format will not be recoginized by the interpreter!
+#### The input format is strictly restricted, illegal format will not be recoginized by the interpreter!
 
 #### Notice that this interpreter can only interpret expressions. Commands are not considered, which makes the if branching consists only of expressions in either branches.
 
