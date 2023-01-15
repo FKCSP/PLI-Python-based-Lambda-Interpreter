@@ -9,12 +9,12 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
         uTerm.first = substitute(uTerm.first, uToSubstitute, uNewTerm)
         uTerm.second = substitute(uTerm.second, uToSubstitute, uNewTerm)
 
-    elif isinstance (uTerm, Abstraction):
-        if uTerm._variable == uToSubstitute:
-            uTerm._variable = substitute (uTerm._variable, uToSubstitute, uNewTerm)
-        uTerm._body = substitute (uTerm._body, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, Abstraction):
+        if uTerm.variable == uToSubstitute:
+            uTerm.variable = substitute(uTerm.variable, uToSubstitute, uNewTerm)
+        uTerm.body = substitute(uTerm.body, uToSubstitute, uNewTerm)
 
-    return copy.deepcopy (uTerm)
+    return copy.deepcopy(uTerm)
 
 
 def base_step(obj):
