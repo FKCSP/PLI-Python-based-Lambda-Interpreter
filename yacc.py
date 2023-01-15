@@ -22,16 +22,19 @@ F : lambda ID.E
 precedence = (
     # comparisons
     ('left', 'LT', 'GT', 'LE', 'GE', 'EQ', 'NEQ'),
-    # binary operator 1
+    # binary operator low
     ('left', 'PLUS', 'MINUS'),
-    # binary operator 2
+    # binary operator high
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     # then
     ('left', 'THEN'),
     # paren
     ('left', 'ELSE'),
+    # unary operator
     ('right', 'UPLUS', 'UMINUS'),
+    # parentheses
     ('left', '(', ')'),
+    # lambda & recursive
     ('right', 'LAMBDA'),
     ('right', 'REC')
 )
