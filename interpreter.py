@@ -17,43 +17,38 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
     return copy.deepcopy (uTerm)
 
 
-def beta_reduce (uTerm):
-    if isinstance (uTerm, Variable):
-        return uTerm
-
-    elif isinstance (uTerm, Abstraction):
-        return uTerm
+def base_step(obj):
+    if isinstance(obj, Variable) or isinstance(obj, Abstraction):
+        return obj
 
     ## leftmost-outermost choice of redex
-    elif isinstance (uTerm, Application):
+    elif isinstance(obj, Application):
         ## outermost
-        if isinstance (uTerm._first, Abstraction):
-            return substitute (uTerm._first._body,
-                               uTerm._first._variable,
-                               uTerm._second)
+        if isinstance(obj.first, Abstraction):
+            return substitute(uTerm.first.body, uTerm.first.variable, uTerm.second)
         else:
             ## leftmost
-            new_first = beta_reduce (uTerm._first)
-            if new_first != uTerm._first:
-                uTerm._first = new_first
+            new_first = base_step(uTerm._first)
+            if new_first != uTerm.first:
+                uTerm.first = newfirst
                 return uTerm
             else:
-                uTerm._second = beta_reduce (uTerm._second)
+                uTerm.second = base_step(uTerm.second)
                 return uTerm
 
 
 
-def multi_step_beta_reduce(uTerm):
-    if isinstance (uTerm, Variable) or isinstance (uTerm, Abstraction):
-        return uTerm
+def beta_reduction(obj):
+    if isinstance(obj, Variable) or isinstance(obj, Abstraction):
+        return obj
 
-    elif isinstance(uTerm, Application):
-        t = uTerm
+    elif isinstance(obj, Application):
+        t = obj
         reductions = []
 
         while (True):
             t_str = str(t)
-            new_t = beta_reduce(t)
+            new_t = base_step(t)
             new_t_str = str(new_t)
 
             if new_t.iswhnf() :
@@ -61,5 +56,5 @@ def multi_step_beta_reduce(uTerm):
                     print(b, " -> ", a)
                 return new_t
             else:
-                reductions.append ((t_str, new_t_str))
+                reductions.append((t_str, new_t_str))
                 t = new_t
