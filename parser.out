@@ -3,109 +3,107 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> expr
-Rule 1     expr -> IF ( expr ) THEN expr ELSE expr
-Rule 2     expr -> IF ( expr ) THEN expr
-Rule 3     expr -> ( expr )
-Rule 4     expr -> LAMBDA ID . expr ( expr )
-Rule 5     expr -> LAMBDA ID . expr
-Rule 6     expr -> REC ID . LAMBDA ID . expr
-Rule 7     expr -> expr PLUS expr
-Rule 8     expr -> expr MINUS expr
-Rule 9     expr -> expr TIMES expr
-Rule 10    expr -> expr DIVIDE expr
-Rule 11    expr -> expr MOD expr
-Rule 12    expr -> expr LT expr
-Rule 13    expr -> expr LE expr
-Rule 14    expr -> expr GT expr
-Rule 15    expr -> expr GE expr
-Rule 16    expr -> expr EQ expr
-Rule 17    expr -> expr NEQ expr
-Rule 18    expr -> MINUS expr
-Rule 19    expr -> PLUS expr
-Rule 20    expr -> NAT
-Rule 21    expr -> ID
+Rule 1     expr -> ID
+Rule 2     expr -> NAT
+Rule 3     expr -> IF ( expr ) THEN expr ELSE expr
+Rule 4     expr -> ( expr )
+Rule 5     expr -> LAMBDA ID . expr ( expr )
+Rule 6     expr -> LAMBDA ( ID . expr )
+Rule 7     expr -> REC ID . LAMBDA ID . expr
+Rule 8     expr -> expr PLUS expr
+Rule 9     expr -> expr MINUS expr
+Rule 10    expr -> expr TIMES expr
+Rule 11    expr -> expr DIVIDE expr
+Rule 12    expr -> expr MOD expr
+Rule 13    expr -> expr LT expr
+Rule 14    expr -> expr LE expr
+Rule 15    expr -> expr GT expr
+Rule 16    expr -> expr GE expr
+Rule 17    expr -> expr EQ expr
+Rule 18    expr -> expr NEQ expr
+Rule 19    expr -> MINUS expr
+Rule 20    expr -> PLUS expr
 
 Terminals, with rules where they appear
 
-(                    : 1 2 3 4
-)                    : 1 2 3 4
-.                    : 4 5 6 6
-DIVIDE               : 10
-ELSE                 : 1
-EQ                   : 16
-GE                   : 15
-GT                   : 14
-ID                   : 4 5 6 6 21
-IF                   : 1 2
-LAMBDA               : 4 5 6
-LE                   : 13
-LT                   : 12
-MINUS                : 8 18
-MOD                  : 11
-NAT                  : 20
-NEQ                  : 17
-PLUS                 : 7 19
-REC                  : 6
-THEN                 : 1 2
-TIMES                : 9
+(                    : 3 4 5 6
+)                    : 3 4 5 6
+.                    : 5 6 7 7
+DIVIDE               : 11
+ELSE                 : 3
+EQ                   : 17
+GE                   : 16
+GT                   : 15
+ID                   : 1 5 6 7 7
+IF                   : 3
+LAMBDA               : 5 6 7
+LE                   : 14
+LT                   : 13
+MINUS                : 9 19
+MOD                  : 12
+NAT                  : 2
+NEQ                  : 18
+PLUS                 : 8 20
+REC                  : 7
+THEN                 : 3
+TIMES                : 10
 error                : 
 
 Nonterminals, with rules where they appear
 
-expr                 : 1 1 1 2 2 3 4 4 5 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 19 0
+expr                 : 3 3 3 4 5 5 6 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 20 0
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 1
 
 state 1
 
     (0) S' -> expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
@@ -122,626 +120,610 @@ state 1
 
 state 2
 
-    (1) expr -> IF . ( expr ) THEN expr ELSE expr
-    (2) expr -> IF . ( expr ) THEN expr
+    (1) expr -> ID .
 
-    (               shift and go to state 21
+    PLUS            reduce using rule 1 (expr -> ID .)
+    MINUS           reduce using rule 1 (expr -> ID .)
+    TIMES           reduce using rule 1 (expr -> ID .)
+    DIVIDE          reduce using rule 1 (expr -> ID .)
+    MOD             reduce using rule 1 (expr -> ID .)
+    LT              reduce using rule 1 (expr -> ID .)
+    LE              reduce using rule 1 (expr -> ID .)
+    GT              reduce using rule 1 (expr -> ID .)
+    GE              reduce using rule 1 (expr -> ID .)
+    EQ              reduce using rule 1 (expr -> ID .)
+    NEQ             reduce using rule 1 (expr -> ID .)
+    $end            reduce using rule 1 (expr -> ID .)
+    )               reduce using rule 1 (expr -> ID .)
+    (               reduce using rule 1 (expr -> ID .)
+    ELSE            reduce using rule 1 (expr -> ID .)
 
 
 state 3
 
-    (3) expr -> ( . expr )
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (2) expr -> NAT .
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    PLUS            reduce using rule 2 (expr -> NAT .)
+    MINUS           reduce using rule 2 (expr -> NAT .)
+    TIMES           reduce using rule 2 (expr -> NAT .)
+    DIVIDE          reduce using rule 2 (expr -> NAT .)
+    MOD             reduce using rule 2 (expr -> NAT .)
+    LT              reduce using rule 2 (expr -> NAT .)
+    LE              reduce using rule 2 (expr -> NAT .)
+    GT              reduce using rule 2 (expr -> NAT .)
+    GE              reduce using rule 2 (expr -> NAT .)
+    EQ              reduce using rule 2 (expr -> NAT .)
+    NEQ             reduce using rule 2 (expr -> NAT .)
+    $end            reduce using rule 2 (expr -> NAT .)
+    )               reduce using rule 2 (expr -> NAT .)
+    (               reduce using rule 2 (expr -> NAT .)
+    ELSE            reduce using rule 2 (expr -> NAT .)
 
-    expr                           shift and go to state 22
 
 state 4
 
-    (4) expr -> LAMBDA . ID . expr ( expr )
-    (5) expr -> LAMBDA . ID . expr
+    (3) expr -> IF . ( expr ) THEN expr ELSE expr
 
-    ID              shift and go to state 23
+    (               shift and go to state 21
 
 
 state 5
 
-    (21) expr -> ID .
+    (4) expr -> ( . expr )
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    PLUS            reduce using rule 21 (expr -> ID .)
-    MINUS           reduce using rule 21 (expr -> ID .)
-    TIMES           reduce using rule 21 (expr -> ID .)
-    DIVIDE          reduce using rule 21 (expr -> ID .)
-    MOD             reduce using rule 21 (expr -> ID .)
-    LT              reduce using rule 21 (expr -> ID .)
-    LE              reduce using rule 21 (expr -> ID .)
-    GT              reduce using rule 21 (expr -> ID .)
-    GE              reduce using rule 21 (expr -> ID .)
-    EQ              reduce using rule 21 (expr -> ID .)
-    NEQ             reduce using rule 21 (expr -> ID .)
-    $end            reduce using rule 21 (expr -> ID .)
-    )               reduce using rule 21 (expr -> ID .)
-    (               reduce using rule 21 (expr -> ID .)
-    ELSE            reduce using rule 21 (expr -> ID .)
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
+    expr                           shift and go to state 22
 
 state 6
 
-    (6) expr -> REC . ID . LAMBDA ID . expr
+    (5) expr -> LAMBDA . ID . expr ( expr )
+    (6) expr -> LAMBDA . ( ID . expr )
 
-    ID              shift and go to state 24
+    ID              shift and go to state 23
+    (               shift and go to state 24
 
 
 state 7
 
-    (19) expr -> PLUS . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (7) expr -> REC . ID . LAMBDA ID . expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 25
 
-    expr                           shift and go to state 25
 
 state 8
 
-    (18) expr -> MINUS . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (20) expr -> PLUS . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 26
 
 state 9
 
-    (20) expr -> NAT .
+    (19) expr -> MINUS . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    PLUS            reduce using rule 20 (expr -> NAT .)
-    MINUS           reduce using rule 20 (expr -> NAT .)
-    TIMES           reduce using rule 20 (expr -> NAT .)
-    DIVIDE          reduce using rule 20 (expr -> NAT .)
-    MOD             reduce using rule 20 (expr -> NAT .)
-    LT              reduce using rule 20 (expr -> NAT .)
-    LE              reduce using rule 20 (expr -> NAT .)
-    GT              reduce using rule 20 (expr -> NAT .)
-    GE              reduce using rule 20 (expr -> NAT .)
-    EQ              reduce using rule 20 (expr -> NAT .)
-    NEQ             reduce using rule 20 (expr -> NAT .)
-    $end            reduce using rule 20 (expr -> NAT .)
-    )               reduce using rule 20 (expr -> NAT .)
-    (               reduce using rule 20 (expr -> NAT .)
-    ELSE            reduce using rule 20 (expr -> NAT .)
-
-
-state 10
-
-    (7) expr -> expr PLUS . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
-
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 27
 
-state 11
+state 10
 
-    (8) expr -> expr MINUS . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (8) expr -> expr PLUS . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 28
 
-state 12
+state 11
 
-    (9) expr -> expr TIMES . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (9) expr -> expr MINUS . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 29
 
-state 13
+state 12
 
-    (10) expr -> expr DIVIDE . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (10) expr -> expr TIMES . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 30
 
-state 14
+state 13
 
-    (11) expr -> expr MOD . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (11) expr -> expr DIVIDE . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 31
 
-state 15
+state 14
 
-    (12) expr -> expr LT . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (12) expr -> expr MOD . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 32
 
-state 16
+state 15
 
-    (13) expr -> expr LE . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (13) expr -> expr LT . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 33
 
-state 17
+state 16
 
-    (14) expr -> expr GT . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (14) expr -> expr LE . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 34
 
-state 18
+state 17
 
-    (15) expr -> expr GE . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (15) expr -> expr GT . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 35
 
-state 19
+state 18
 
-    (16) expr -> expr EQ . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (16) expr -> expr GE . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 36
 
-state 20
+state 19
 
-    (17) expr -> expr NEQ . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (17) expr -> expr EQ . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 37
 
-state 21
+state 20
 
-    (1) expr -> IF ( . expr ) THEN expr ELSE expr
-    (2) expr -> IF ( . expr ) THEN expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (18) expr -> expr NEQ . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 38
 
+state 21
+
+    (3) expr -> IF ( . expr ) THEN expr ELSE expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 39
+
 state 22
 
-    (3) expr -> ( expr . )
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (4) expr -> ( expr . )
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    )               shift and go to state 39
+    )               shift and go to state 40
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     TIMES           shift and go to state 12
@@ -757,93 +739,55 @@ state 22
 
 state 23
 
-    (4) expr -> LAMBDA ID . . expr ( expr )
-    (5) expr -> LAMBDA ID . . expr
-
-    .               shift and go to state 40
-
-
-state 24
-
-    (6) expr -> REC ID . . LAMBDA ID . expr
+    (5) expr -> LAMBDA ID . . expr ( expr )
 
     .               shift and go to state 41
 
 
+state 24
+
+    (6) expr -> LAMBDA ( . ID . expr )
+
+    ID              shift and go to state 42
+
+
 state 25
 
-    (19) expr -> PLUS expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (7) expr -> REC ID . . LAMBDA ID . expr
 
-    PLUS            reduce using rule 19 (expr -> PLUS expr .)
-    MINUS           reduce using rule 19 (expr -> PLUS expr .)
-    TIMES           reduce using rule 19 (expr -> PLUS expr .)
-    DIVIDE          reduce using rule 19 (expr -> PLUS expr .)
-    MOD             reduce using rule 19 (expr -> PLUS expr .)
-    LT              reduce using rule 19 (expr -> PLUS expr .)
-    LE              reduce using rule 19 (expr -> PLUS expr .)
-    GT              reduce using rule 19 (expr -> PLUS expr .)
-    GE              reduce using rule 19 (expr -> PLUS expr .)
-    EQ              reduce using rule 19 (expr -> PLUS expr .)
-    NEQ             reduce using rule 19 (expr -> PLUS expr .)
-    $end            reduce using rule 19 (expr -> PLUS expr .)
-    )               reduce using rule 19 (expr -> PLUS expr .)
-    (               reduce using rule 19 (expr -> PLUS expr .)
-    ELSE            reduce using rule 19 (expr -> PLUS expr .)
-
-  ! PLUS            [ shift and go to state 10 ]
-  ! MINUS           [ shift and go to state 11 ]
-  ! TIMES           [ shift and go to state 12 ]
-  ! DIVIDE          [ shift and go to state 13 ]
-  ! MOD             [ shift and go to state 14 ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
+    .               shift and go to state 43
 
 
 state 26
 
-    (18) expr -> MINUS expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (20) expr -> PLUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 18 (expr -> MINUS expr .)
-    MINUS           reduce using rule 18 (expr -> MINUS expr .)
-    TIMES           reduce using rule 18 (expr -> MINUS expr .)
-    DIVIDE          reduce using rule 18 (expr -> MINUS expr .)
-    MOD             reduce using rule 18 (expr -> MINUS expr .)
-    LT              reduce using rule 18 (expr -> MINUS expr .)
-    LE              reduce using rule 18 (expr -> MINUS expr .)
-    GT              reduce using rule 18 (expr -> MINUS expr .)
-    GE              reduce using rule 18 (expr -> MINUS expr .)
-    EQ              reduce using rule 18 (expr -> MINUS expr .)
-    NEQ             reduce using rule 18 (expr -> MINUS expr .)
-    $end            reduce using rule 18 (expr -> MINUS expr .)
-    )               reduce using rule 18 (expr -> MINUS expr .)
-    (               reduce using rule 18 (expr -> MINUS expr .)
-    ELSE            reduce using rule 18 (expr -> MINUS expr .)
+    PLUS            reduce using rule 20 (expr -> PLUS expr .)
+    MINUS           reduce using rule 20 (expr -> PLUS expr .)
+    TIMES           reduce using rule 20 (expr -> PLUS expr .)
+    DIVIDE          reduce using rule 20 (expr -> PLUS expr .)
+    MOD             reduce using rule 20 (expr -> PLUS expr .)
+    LT              reduce using rule 20 (expr -> PLUS expr .)
+    LE              reduce using rule 20 (expr -> PLUS expr .)
+    GT              reduce using rule 20 (expr -> PLUS expr .)
+    GE              reduce using rule 20 (expr -> PLUS expr .)
+    EQ              reduce using rule 20 (expr -> PLUS expr .)
+    NEQ             reduce using rule 20 (expr -> PLUS expr .)
+    $end            reduce using rule 20 (expr -> PLUS expr .)
+    )               reduce using rule 20 (expr -> PLUS expr .)
+    (               reduce using rule 20 (expr -> PLUS expr .)
+    ELSE            reduce using rule 20 (expr -> PLUS expr .)
 
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
@@ -860,122 +804,34 @@ state 26
 
 state 27
 
-    (7) expr -> expr PLUS expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (19) expr -> MINUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 7 (expr -> expr PLUS expr .)
-    MINUS           reduce using rule 7 (expr -> expr PLUS expr .)
-    LT              reduce using rule 7 (expr -> expr PLUS expr .)
-    LE              reduce using rule 7 (expr -> expr PLUS expr .)
-    GT              reduce using rule 7 (expr -> expr PLUS expr .)
-    GE              reduce using rule 7 (expr -> expr PLUS expr .)
-    EQ              reduce using rule 7 (expr -> expr PLUS expr .)
-    NEQ             reduce using rule 7 (expr -> expr PLUS expr .)
-    $end            reduce using rule 7 (expr -> expr PLUS expr .)
-    )               reduce using rule 7 (expr -> expr PLUS expr .)
-    (               reduce using rule 7 (expr -> expr PLUS expr .)
-    ELSE            reduce using rule 7 (expr -> expr PLUS expr .)
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! TIMES           [ reduce using rule 7 (expr -> expr PLUS expr .) ]
-  ! DIVIDE          [ reduce using rule 7 (expr -> expr PLUS expr .) ]
-  ! MOD             [ reduce using rule 7 (expr -> expr PLUS expr .) ]
-  ! PLUS            [ shift and go to state 10 ]
-  ! MINUS           [ shift and go to state 11 ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 28
-
-    (8) expr -> expr MINUS expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    PLUS            reduce using rule 8 (expr -> expr MINUS expr .)
-    MINUS           reduce using rule 8 (expr -> expr MINUS expr .)
-    LT              reduce using rule 8 (expr -> expr MINUS expr .)
-    LE              reduce using rule 8 (expr -> expr MINUS expr .)
-    GT              reduce using rule 8 (expr -> expr MINUS expr .)
-    GE              reduce using rule 8 (expr -> expr MINUS expr .)
-    EQ              reduce using rule 8 (expr -> expr MINUS expr .)
-    NEQ             reduce using rule 8 (expr -> expr MINUS expr .)
-    $end            reduce using rule 8 (expr -> expr MINUS expr .)
-    )               reduce using rule 8 (expr -> expr MINUS expr .)
-    (               reduce using rule 8 (expr -> expr MINUS expr .)
-    ELSE            reduce using rule 8 (expr -> expr MINUS expr .)
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! TIMES           [ reduce using rule 8 (expr -> expr MINUS expr .) ]
-  ! DIVIDE          [ reduce using rule 8 (expr -> expr MINUS expr .) ]
-  ! MOD             [ reduce using rule 8 (expr -> expr MINUS expr .) ]
-  ! PLUS            [ shift and go to state 10 ]
-  ! MINUS           [ shift and go to state 11 ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 29
-
-    (9) expr -> expr TIMES expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    PLUS            reduce using rule 9 (expr -> expr TIMES expr .)
-    MINUS           reduce using rule 9 (expr -> expr TIMES expr .)
-    TIMES           reduce using rule 9 (expr -> expr TIMES expr .)
-    DIVIDE          reduce using rule 9 (expr -> expr TIMES expr .)
-    MOD             reduce using rule 9 (expr -> expr TIMES expr .)
-    LT              reduce using rule 9 (expr -> expr TIMES expr .)
-    LE              reduce using rule 9 (expr -> expr TIMES expr .)
-    GT              reduce using rule 9 (expr -> expr TIMES expr .)
-    GE              reduce using rule 9 (expr -> expr TIMES expr .)
-    EQ              reduce using rule 9 (expr -> expr TIMES expr .)
-    NEQ             reduce using rule 9 (expr -> expr TIMES expr .)
-    $end            reduce using rule 9 (expr -> expr TIMES expr .)
-    )               reduce using rule 9 (expr -> expr TIMES expr .)
-    (               reduce using rule 9 (expr -> expr TIMES expr .)
-    ELSE            reduce using rule 9 (expr -> expr TIMES expr .)
+    PLUS            reduce using rule 19 (expr -> MINUS expr .)
+    MINUS           reduce using rule 19 (expr -> MINUS expr .)
+    TIMES           reduce using rule 19 (expr -> MINUS expr .)
+    DIVIDE          reduce using rule 19 (expr -> MINUS expr .)
+    MOD             reduce using rule 19 (expr -> MINUS expr .)
+    LT              reduce using rule 19 (expr -> MINUS expr .)
+    LE              reduce using rule 19 (expr -> MINUS expr .)
+    GT              reduce using rule 19 (expr -> MINUS expr .)
+    GE              reduce using rule 19 (expr -> MINUS expr .)
+    EQ              reduce using rule 19 (expr -> MINUS expr .)
+    NEQ             reduce using rule 19 (expr -> MINUS expr .)
+    $end            reduce using rule 19 (expr -> MINUS expr .)
+    )               reduce using rule 19 (expr -> MINUS expr .)
+    (               reduce using rule 19 (expr -> MINUS expr .)
+    ELSE            reduce using rule 19 (expr -> MINUS expr .)
 
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
@@ -990,36 +846,124 @@ state 29
   ! NEQ             [ shift and go to state 20 ]
 
 
+state 28
+
+    (8) expr -> expr PLUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    PLUS            reduce using rule 8 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 8 (expr -> expr PLUS expr .)
+    LT              reduce using rule 8 (expr -> expr PLUS expr .)
+    LE              reduce using rule 8 (expr -> expr PLUS expr .)
+    GT              reduce using rule 8 (expr -> expr PLUS expr .)
+    GE              reduce using rule 8 (expr -> expr PLUS expr .)
+    EQ              reduce using rule 8 (expr -> expr PLUS expr .)
+    NEQ             reduce using rule 8 (expr -> expr PLUS expr .)
+    $end            reduce using rule 8 (expr -> expr PLUS expr .)
+    )               reduce using rule 8 (expr -> expr PLUS expr .)
+    (               reduce using rule 8 (expr -> expr PLUS expr .)
+    ELSE            reduce using rule 8 (expr -> expr PLUS expr .)
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! TIMES           [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! MOD             [ reduce using rule 8 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 10 ]
+  ! MINUS           [ shift and go to state 11 ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 29
+
+    (9) expr -> expr MINUS expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    PLUS            reduce using rule 9 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 9 (expr -> expr MINUS expr .)
+    LT              reduce using rule 9 (expr -> expr MINUS expr .)
+    LE              reduce using rule 9 (expr -> expr MINUS expr .)
+    GT              reduce using rule 9 (expr -> expr MINUS expr .)
+    GE              reduce using rule 9 (expr -> expr MINUS expr .)
+    EQ              reduce using rule 9 (expr -> expr MINUS expr .)
+    NEQ             reduce using rule 9 (expr -> expr MINUS expr .)
+    $end            reduce using rule 9 (expr -> expr MINUS expr .)
+    )               reduce using rule 9 (expr -> expr MINUS expr .)
+    (               reduce using rule 9 (expr -> expr MINUS expr .)
+    ELSE            reduce using rule 9 (expr -> expr MINUS expr .)
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! TIMES           [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! MOD             [ reduce using rule 9 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 10 ]
+  ! MINUS           [ shift and go to state 11 ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
 state 30
 
-    (10) expr -> expr DIVIDE expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (10) expr -> expr TIMES expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 10 (expr -> expr DIVIDE expr .)
-    MINUS           reduce using rule 10 (expr -> expr DIVIDE expr .)
-    TIMES           reduce using rule 10 (expr -> expr DIVIDE expr .)
-    DIVIDE          reduce using rule 10 (expr -> expr DIVIDE expr .)
-    MOD             reduce using rule 10 (expr -> expr DIVIDE expr .)
-    LT              reduce using rule 10 (expr -> expr DIVIDE expr .)
-    LE              reduce using rule 10 (expr -> expr DIVIDE expr .)
-    GT              reduce using rule 10 (expr -> expr DIVIDE expr .)
-    GE              reduce using rule 10 (expr -> expr DIVIDE expr .)
-    EQ              reduce using rule 10 (expr -> expr DIVIDE expr .)
-    NEQ             reduce using rule 10 (expr -> expr DIVIDE expr .)
-    $end            reduce using rule 10 (expr -> expr DIVIDE expr .)
-    )               reduce using rule 10 (expr -> expr DIVIDE expr .)
-    (               reduce using rule 10 (expr -> expr DIVIDE expr .)
-    ELSE            reduce using rule 10 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 10 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 10 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 10 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 10 (expr -> expr TIMES expr .)
+    MOD             reduce using rule 10 (expr -> expr TIMES expr .)
+    LT              reduce using rule 10 (expr -> expr TIMES expr .)
+    LE              reduce using rule 10 (expr -> expr TIMES expr .)
+    GT              reduce using rule 10 (expr -> expr TIMES expr .)
+    GE              reduce using rule 10 (expr -> expr TIMES expr .)
+    EQ              reduce using rule 10 (expr -> expr TIMES expr .)
+    NEQ             reduce using rule 10 (expr -> expr TIMES expr .)
+    $end            reduce using rule 10 (expr -> expr TIMES expr .)
+    )               reduce using rule 10 (expr -> expr TIMES expr .)
+    (               reduce using rule 10 (expr -> expr TIMES expr .)
+    ELSE            reduce using rule 10 (expr -> expr TIMES expr .)
 
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
@@ -1036,34 +980,34 @@ state 30
 
 state 31
 
-    (11) expr -> expr MOD expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (11) expr -> expr DIVIDE expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 11 (expr -> expr MOD expr .)
-    MINUS           reduce using rule 11 (expr -> expr MOD expr .)
-    TIMES           reduce using rule 11 (expr -> expr MOD expr .)
-    DIVIDE          reduce using rule 11 (expr -> expr MOD expr .)
-    MOD             reduce using rule 11 (expr -> expr MOD expr .)
-    LT              reduce using rule 11 (expr -> expr MOD expr .)
-    LE              reduce using rule 11 (expr -> expr MOD expr .)
-    GT              reduce using rule 11 (expr -> expr MOD expr .)
-    GE              reduce using rule 11 (expr -> expr MOD expr .)
-    EQ              reduce using rule 11 (expr -> expr MOD expr .)
-    NEQ             reduce using rule 11 (expr -> expr MOD expr .)
-    $end            reduce using rule 11 (expr -> expr MOD expr .)
-    )               reduce using rule 11 (expr -> expr MOD expr .)
-    (               reduce using rule 11 (expr -> expr MOD expr .)
-    ELSE            reduce using rule 11 (expr -> expr MOD expr .)
+    PLUS            reduce using rule 11 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 11 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 11 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 11 (expr -> expr DIVIDE expr .)
+    MOD             reduce using rule 11 (expr -> expr DIVIDE expr .)
+    LT              reduce using rule 11 (expr -> expr DIVIDE expr .)
+    LE              reduce using rule 11 (expr -> expr DIVIDE expr .)
+    GT              reduce using rule 11 (expr -> expr DIVIDE expr .)
+    GE              reduce using rule 11 (expr -> expr DIVIDE expr .)
+    EQ              reduce using rule 11 (expr -> expr DIVIDE expr .)
+    NEQ             reduce using rule 11 (expr -> expr DIVIDE expr .)
+    $end            reduce using rule 11 (expr -> expr DIVIDE expr .)
+    )               reduce using rule 11 (expr -> expr DIVIDE expr .)
+    (               reduce using rule 11 (expr -> expr DIVIDE expr .)
+    ELSE            reduce using rule 11 (expr -> expr DIVIDE expr .)
 
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
@@ -1080,549 +1024,35 @@ state 31
 
 state 32
 
-    (12) expr -> expr LT expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (12) expr -> expr MOD expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    PLUS            reduce using rule 12 (expr -> expr MOD expr .)
+    MINUS           reduce using rule 12 (expr -> expr MOD expr .)
+    TIMES           reduce using rule 12 (expr -> expr MOD expr .)
+    DIVIDE          reduce using rule 12 (expr -> expr MOD expr .)
+    MOD             reduce using rule 12 (expr -> expr MOD expr .)
+    LT              reduce using rule 12 (expr -> expr MOD expr .)
+    LE              reduce using rule 12 (expr -> expr MOD expr .)
+    GT              reduce using rule 12 (expr -> expr MOD expr .)
+    GE              reduce using rule 12 (expr -> expr MOD expr .)
+    EQ              reduce using rule 12 (expr -> expr MOD expr .)
+    NEQ             reduce using rule 12 (expr -> expr MOD expr .)
+    $end            reduce using rule 12 (expr -> expr MOD expr .)
+    )               reduce using rule 12 (expr -> expr MOD expr .)
+    (               reduce using rule 12 (expr -> expr MOD expr .)
+    ELSE            reduce using rule 12 (expr -> expr MOD expr .)
 
-    LT              reduce using rule 12 (expr -> expr LT expr .)
-    LE              reduce using rule 12 (expr -> expr LT expr .)
-    GT              reduce using rule 12 (expr -> expr LT expr .)
-    GE              reduce using rule 12 (expr -> expr LT expr .)
-    EQ              reduce using rule 12 (expr -> expr LT expr .)
-    NEQ             reduce using rule 12 (expr -> expr LT expr .)
-    $end            reduce using rule 12 (expr -> expr LT expr .)
-    )               reduce using rule 12 (expr -> expr LT expr .)
-    (               reduce using rule 12 (expr -> expr LT expr .)
-    ELSE            reduce using rule 12 (expr -> expr LT expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 12 (expr -> expr LT expr .) ]
-  ! MINUS           [ reduce using rule 12 (expr -> expr LT expr .) ]
-  ! TIMES           [ reduce using rule 12 (expr -> expr LT expr .) ]
-  ! DIVIDE          [ reduce using rule 12 (expr -> expr LT expr .) ]
-  ! MOD             [ reduce using rule 12 (expr -> expr LT expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 33
-
-    (13) expr -> expr LE expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    LT              reduce using rule 13 (expr -> expr LE expr .)
-    LE              reduce using rule 13 (expr -> expr LE expr .)
-    GT              reduce using rule 13 (expr -> expr LE expr .)
-    GE              reduce using rule 13 (expr -> expr LE expr .)
-    EQ              reduce using rule 13 (expr -> expr LE expr .)
-    NEQ             reduce using rule 13 (expr -> expr LE expr .)
-    $end            reduce using rule 13 (expr -> expr LE expr .)
-    )               reduce using rule 13 (expr -> expr LE expr .)
-    (               reduce using rule 13 (expr -> expr LE expr .)
-    ELSE            reduce using rule 13 (expr -> expr LE expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 13 (expr -> expr LE expr .) ]
-  ! MINUS           [ reduce using rule 13 (expr -> expr LE expr .) ]
-  ! TIMES           [ reduce using rule 13 (expr -> expr LE expr .) ]
-  ! DIVIDE          [ reduce using rule 13 (expr -> expr LE expr .) ]
-  ! MOD             [ reduce using rule 13 (expr -> expr LE expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 34
-
-    (14) expr -> expr GT expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    LT              reduce using rule 14 (expr -> expr GT expr .)
-    LE              reduce using rule 14 (expr -> expr GT expr .)
-    GT              reduce using rule 14 (expr -> expr GT expr .)
-    GE              reduce using rule 14 (expr -> expr GT expr .)
-    EQ              reduce using rule 14 (expr -> expr GT expr .)
-    NEQ             reduce using rule 14 (expr -> expr GT expr .)
-    $end            reduce using rule 14 (expr -> expr GT expr .)
-    )               reduce using rule 14 (expr -> expr GT expr .)
-    (               reduce using rule 14 (expr -> expr GT expr .)
-    ELSE            reduce using rule 14 (expr -> expr GT expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 14 (expr -> expr GT expr .) ]
-  ! MINUS           [ reduce using rule 14 (expr -> expr GT expr .) ]
-  ! TIMES           [ reduce using rule 14 (expr -> expr GT expr .) ]
-  ! DIVIDE          [ reduce using rule 14 (expr -> expr GT expr .) ]
-  ! MOD             [ reduce using rule 14 (expr -> expr GT expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 35
-
-    (15) expr -> expr GE expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    LT              reduce using rule 15 (expr -> expr GE expr .)
-    LE              reduce using rule 15 (expr -> expr GE expr .)
-    GT              reduce using rule 15 (expr -> expr GE expr .)
-    GE              reduce using rule 15 (expr -> expr GE expr .)
-    EQ              reduce using rule 15 (expr -> expr GE expr .)
-    NEQ             reduce using rule 15 (expr -> expr GE expr .)
-    $end            reduce using rule 15 (expr -> expr GE expr .)
-    )               reduce using rule 15 (expr -> expr GE expr .)
-    (               reduce using rule 15 (expr -> expr GE expr .)
-    ELSE            reduce using rule 15 (expr -> expr GE expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 15 (expr -> expr GE expr .) ]
-  ! MINUS           [ reduce using rule 15 (expr -> expr GE expr .) ]
-  ! TIMES           [ reduce using rule 15 (expr -> expr GE expr .) ]
-  ! DIVIDE          [ reduce using rule 15 (expr -> expr GE expr .) ]
-  ! MOD             [ reduce using rule 15 (expr -> expr GE expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 36
-
-    (16) expr -> expr EQ expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    LT              reduce using rule 16 (expr -> expr EQ expr .)
-    LE              reduce using rule 16 (expr -> expr EQ expr .)
-    GT              reduce using rule 16 (expr -> expr EQ expr .)
-    GE              reduce using rule 16 (expr -> expr EQ expr .)
-    EQ              reduce using rule 16 (expr -> expr EQ expr .)
-    NEQ             reduce using rule 16 (expr -> expr EQ expr .)
-    $end            reduce using rule 16 (expr -> expr EQ expr .)
-    )               reduce using rule 16 (expr -> expr EQ expr .)
-    (               reduce using rule 16 (expr -> expr EQ expr .)
-    ELSE            reduce using rule 16 (expr -> expr EQ expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 16 (expr -> expr EQ expr .) ]
-  ! MINUS           [ reduce using rule 16 (expr -> expr EQ expr .) ]
-  ! TIMES           [ reduce using rule 16 (expr -> expr EQ expr .) ]
-  ! DIVIDE          [ reduce using rule 16 (expr -> expr EQ expr .) ]
-  ! MOD             [ reduce using rule 16 (expr -> expr EQ expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 37
-
-    (17) expr -> expr NEQ expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    LT              reduce using rule 17 (expr -> expr NEQ expr .)
-    LE              reduce using rule 17 (expr -> expr NEQ expr .)
-    GT              reduce using rule 17 (expr -> expr NEQ expr .)
-    GE              reduce using rule 17 (expr -> expr NEQ expr .)
-    EQ              reduce using rule 17 (expr -> expr NEQ expr .)
-    NEQ             reduce using rule 17 (expr -> expr NEQ expr .)
-    $end            reduce using rule 17 (expr -> expr NEQ expr .)
-    )               reduce using rule 17 (expr -> expr NEQ expr .)
-    (               reduce using rule 17 (expr -> expr NEQ expr .)
-    ELSE            reduce using rule 17 (expr -> expr NEQ expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-
-  ! PLUS            [ reduce using rule 17 (expr -> expr NEQ expr .) ]
-  ! MINUS           [ reduce using rule 17 (expr -> expr NEQ expr .) ]
-  ! TIMES           [ reduce using rule 17 (expr -> expr NEQ expr .) ]
-  ! DIVIDE          [ reduce using rule 17 (expr -> expr NEQ expr .) ]
-  ! MOD             [ reduce using rule 17 (expr -> expr NEQ expr .) ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
-
-state 38
-
-    (1) expr -> IF ( expr . ) THEN expr ELSE expr
-    (2) expr -> IF ( expr . ) THEN expr
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    )               shift and go to state 42
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-    LT              shift and go to state 15
-    LE              shift and go to state 16
-    GT              shift and go to state 17
-    GE              shift and go to state 18
-    EQ              shift and go to state 19
-    NEQ             shift and go to state 20
-
-
-state 39
-
-    (3) expr -> ( expr ) .
-
-    PLUS            reduce using rule 3 (expr -> ( expr ) .)
-    MINUS           reduce using rule 3 (expr -> ( expr ) .)
-    TIMES           reduce using rule 3 (expr -> ( expr ) .)
-    DIVIDE          reduce using rule 3 (expr -> ( expr ) .)
-    MOD             reduce using rule 3 (expr -> ( expr ) .)
-    LT              reduce using rule 3 (expr -> ( expr ) .)
-    LE              reduce using rule 3 (expr -> ( expr ) .)
-    GT              reduce using rule 3 (expr -> ( expr ) .)
-    GE              reduce using rule 3 (expr -> ( expr ) .)
-    EQ              reduce using rule 3 (expr -> ( expr ) .)
-    NEQ             reduce using rule 3 (expr -> ( expr ) .)
-    $end            reduce using rule 3 (expr -> ( expr ) .)
-    )               reduce using rule 3 (expr -> ( expr ) .)
-    (               reduce using rule 3 (expr -> ( expr ) .)
-    ELSE            reduce using rule 3 (expr -> ( expr ) .)
-
-
-state 40
-
-    (4) expr -> LAMBDA ID . . expr ( expr )
-    (5) expr -> LAMBDA ID . . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
-
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
-
-    expr                           shift and go to state 43
-
-state 41
-
-    (6) expr -> REC ID . . LAMBDA ID . expr
-
-    LAMBDA          shift and go to state 44
-
-
-state 42
-
-    (1) expr -> IF ( expr ) . THEN expr ELSE expr
-    (2) expr -> IF ( expr ) . THEN expr
-
-    THEN            shift and go to state 45
-
-
-state 43
-
-    (4) expr -> LAMBDA ID . expr . ( expr )
-    (5) expr -> LAMBDA ID . expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-  ! shift/reduce conflict for ( resolved as shift
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
-    (               shift and go to state 46
-    $end            reduce using rule 5 (expr -> LAMBDA ID . expr .)
-    )               reduce using rule 5 (expr -> LAMBDA ID . expr .)
-    ELSE            reduce using rule 5 (expr -> LAMBDA ID . expr .)
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-    LT              shift and go to state 15
-    LE              shift and go to state 16
-    GT              shift and go to state 17
-    GE              shift and go to state 18
-    EQ              shift and go to state 19
-    NEQ             shift and go to state 20
-
-  ! PLUS            [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! MINUS           [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! TIMES           [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! DIVIDE          [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! MOD             [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! LT              [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! LE              [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! GT              [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! GE              [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! EQ              [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! NEQ             [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-  ! (               [ reduce using rule 5 (expr -> LAMBDA ID . expr .) ]
-
-
-state 44
-
-    (6) expr -> REC ID . LAMBDA . ID . expr
-
-    ID              shift and go to state 47
-
-
-state 45
-
-    (1) expr -> IF ( expr ) THEN . expr ELSE expr
-    (2) expr -> IF ( expr ) THEN . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
-
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
-
-    expr                           shift and go to state 48
-
-state 46
-
-    (4) expr -> LAMBDA ID . expr ( . expr )
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
-
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
-
-    expr                           shift and go to state 49
-
-state 47
-
-    (6) expr -> REC ID . LAMBDA ID . . expr
-
-    .               shift and go to state 50
-
-
-state 48
-
-    (1) expr -> IF ( expr ) THEN expr . ELSE expr
-    (2) expr -> IF ( expr ) THEN expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
-
-    ELSE            shift and go to state 51
-    PLUS            reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    MINUS           reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    TIMES           reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    DIVIDE          reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    MOD             reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    LT              reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    LE              reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    GT              reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    GE              reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    EQ              reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    NEQ             reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    $end            reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    )               reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-    (               reduce using rule 2 (expr -> IF ( expr ) THEN expr .)
-
-  ! ELSE            [ reduce using rule 2 (expr -> IF ( expr ) THEN expr .) ]
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
   ! TIMES           [ shift and go to state 12 ]
@@ -1636,22 +1066,286 @@ state 48
   ! NEQ             [ shift and go to state 20 ]
 
 
-state 49
+state 33
 
-    (4) expr -> LAMBDA ID . expr ( expr . )
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (13) expr -> expr LT expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    )               shift and go to state 52
+    LT              reduce using rule 13 (expr -> expr LT expr .)
+    LE              reduce using rule 13 (expr -> expr LT expr .)
+    GT              reduce using rule 13 (expr -> expr LT expr .)
+    GE              reduce using rule 13 (expr -> expr LT expr .)
+    EQ              reduce using rule 13 (expr -> expr LT expr .)
+    NEQ             reduce using rule 13 (expr -> expr LT expr .)
+    $end            reduce using rule 13 (expr -> expr LT expr .)
+    )               reduce using rule 13 (expr -> expr LT expr .)
+    (               reduce using rule 13 (expr -> expr LT expr .)
+    ELSE            reduce using rule 13 (expr -> expr LT expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 13 (expr -> expr LT expr .) ]
+  ! MINUS           [ reduce using rule 13 (expr -> expr LT expr .) ]
+  ! TIMES           [ reduce using rule 13 (expr -> expr LT expr .) ]
+  ! DIVIDE          [ reduce using rule 13 (expr -> expr LT expr .) ]
+  ! MOD             [ reduce using rule 13 (expr -> expr LT expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 34
+
+    (14) expr -> expr LE expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    LT              reduce using rule 14 (expr -> expr LE expr .)
+    LE              reduce using rule 14 (expr -> expr LE expr .)
+    GT              reduce using rule 14 (expr -> expr LE expr .)
+    GE              reduce using rule 14 (expr -> expr LE expr .)
+    EQ              reduce using rule 14 (expr -> expr LE expr .)
+    NEQ             reduce using rule 14 (expr -> expr LE expr .)
+    $end            reduce using rule 14 (expr -> expr LE expr .)
+    )               reduce using rule 14 (expr -> expr LE expr .)
+    (               reduce using rule 14 (expr -> expr LE expr .)
+    ELSE            reduce using rule 14 (expr -> expr LE expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 14 (expr -> expr LE expr .) ]
+  ! MINUS           [ reduce using rule 14 (expr -> expr LE expr .) ]
+  ! TIMES           [ reduce using rule 14 (expr -> expr LE expr .) ]
+  ! DIVIDE          [ reduce using rule 14 (expr -> expr LE expr .) ]
+  ! MOD             [ reduce using rule 14 (expr -> expr LE expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 35
+
+    (15) expr -> expr GT expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    LT              reduce using rule 15 (expr -> expr GT expr .)
+    LE              reduce using rule 15 (expr -> expr GT expr .)
+    GT              reduce using rule 15 (expr -> expr GT expr .)
+    GE              reduce using rule 15 (expr -> expr GT expr .)
+    EQ              reduce using rule 15 (expr -> expr GT expr .)
+    NEQ             reduce using rule 15 (expr -> expr GT expr .)
+    $end            reduce using rule 15 (expr -> expr GT expr .)
+    )               reduce using rule 15 (expr -> expr GT expr .)
+    (               reduce using rule 15 (expr -> expr GT expr .)
+    ELSE            reduce using rule 15 (expr -> expr GT expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 15 (expr -> expr GT expr .) ]
+  ! MINUS           [ reduce using rule 15 (expr -> expr GT expr .) ]
+  ! TIMES           [ reduce using rule 15 (expr -> expr GT expr .) ]
+  ! DIVIDE          [ reduce using rule 15 (expr -> expr GT expr .) ]
+  ! MOD             [ reduce using rule 15 (expr -> expr GT expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 36
+
+    (16) expr -> expr GE expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    LT              reduce using rule 16 (expr -> expr GE expr .)
+    LE              reduce using rule 16 (expr -> expr GE expr .)
+    GT              reduce using rule 16 (expr -> expr GE expr .)
+    GE              reduce using rule 16 (expr -> expr GE expr .)
+    EQ              reduce using rule 16 (expr -> expr GE expr .)
+    NEQ             reduce using rule 16 (expr -> expr GE expr .)
+    $end            reduce using rule 16 (expr -> expr GE expr .)
+    )               reduce using rule 16 (expr -> expr GE expr .)
+    (               reduce using rule 16 (expr -> expr GE expr .)
+    ELSE            reduce using rule 16 (expr -> expr GE expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 16 (expr -> expr GE expr .) ]
+  ! MINUS           [ reduce using rule 16 (expr -> expr GE expr .) ]
+  ! TIMES           [ reduce using rule 16 (expr -> expr GE expr .) ]
+  ! DIVIDE          [ reduce using rule 16 (expr -> expr GE expr .) ]
+  ! MOD             [ reduce using rule 16 (expr -> expr GE expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 37
+
+    (17) expr -> expr EQ expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    LT              reduce using rule 17 (expr -> expr EQ expr .)
+    LE              reduce using rule 17 (expr -> expr EQ expr .)
+    GT              reduce using rule 17 (expr -> expr EQ expr .)
+    GE              reduce using rule 17 (expr -> expr EQ expr .)
+    EQ              reduce using rule 17 (expr -> expr EQ expr .)
+    NEQ             reduce using rule 17 (expr -> expr EQ expr .)
+    $end            reduce using rule 17 (expr -> expr EQ expr .)
+    )               reduce using rule 17 (expr -> expr EQ expr .)
+    (               reduce using rule 17 (expr -> expr EQ expr .)
+    ELSE            reduce using rule 17 (expr -> expr EQ expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 17 (expr -> expr EQ expr .) ]
+  ! MINUS           [ reduce using rule 17 (expr -> expr EQ expr .) ]
+  ! TIMES           [ reduce using rule 17 (expr -> expr EQ expr .) ]
+  ! DIVIDE          [ reduce using rule 17 (expr -> expr EQ expr .) ]
+  ! MOD             [ reduce using rule 17 (expr -> expr EQ expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 38
+
+    (18) expr -> expr NEQ expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    LT              reduce using rule 18 (expr -> expr NEQ expr .)
+    LE              reduce using rule 18 (expr -> expr NEQ expr .)
+    GT              reduce using rule 18 (expr -> expr NEQ expr .)
+    GE              reduce using rule 18 (expr -> expr NEQ expr .)
+    EQ              reduce using rule 18 (expr -> expr NEQ expr .)
+    NEQ             reduce using rule 18 (expr -> expr NEQ expr .)
+    $end            reduce using rule 18 (expr -> expr NEQ expr .)
+    )               reduce using rule 18 (expr -> expr NEQ expr .)
+    (               reduce using rule 18 (expr -> expr NEQ expr .)
+    ELSE            reduce using rule 18 (expr -> expr NEQ expr .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! PLUS            [ reduce using rule 18 (expr -> expr NEQ expr .) ]
+  ! MINUS           [ reduce using rule 18 (expr -> expr NEQ expr .) ]
+  ! TIMES           [ reduce using rule 18 (expr -> expr NEQ expr .) ]
+  ! DIVIDE          [ reduce using rule 18 (expr -> expr NEQ expr .) ]
+  ! MOD             [ reduce using rule 18 (expr -> expr NEQ expr .) ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
+
+state 39
+
+    (3) expr -> IF ( expr . ) THEN expr ELSE expr
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    )               shift and go to state 44
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     TIMES           shift and go to state 12
@@ -1665,113 +1359,444 @@ state 49
     NEQ             shift and go to state 20
 
 
-state 50
+state 40
 
-    (6) expr -> REC ID . LAMBDA ID . . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (4) expr -> ( expr ) .
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    PLUS            reduce using rule 4 (expr -> ( expr ) .)
+    MINUS           reduce using rule 4 (expr -> ( expr ) .)
+    TIMES           reduce using rule 4 (expr -> ( expr ) .)
+    DIVIDE          reduce using rule 4 (expr -> ( expr ) .)
+    MOD             reduce using rule 4 (expr -> ( expr ) .)
+    LT              reduce using rule 4 (expr -> ( expr ) .)
+    LE              reduce using rule 4 (expr -> ( expr ) .)
+    GT              reduce using rule 4 (expr -> ( expr ) .)
+    GE              reduce using rule 4 (expr -> ( expr ) .)
+    EQ              reduce using rule 4 (expr -> ( expr ) .)
+    NEQ             reduce using rule 4 (expr -> ( expr ) .)
+    $end            reduce using rule 4 (expr -> ( expr ) .)
+    )               reduce using rule 4 (expr -> ( expr ) .)
+    (               reduce using rule 4 (expr -> ( expr ) .)
+    ELSE            reduce using rule 4 (expr -> ( expr ) .)
+
+
+state 41
+
+    (5) expr -> LAMBDA ID . . expr ( expr )
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 45
+
+state 42
+
+    (6) expr -> LAMBDA ( ID . . expr )
+
+    .               shift and go to state 46
+
+
+state 43
+
+    (7) expr -> REC ID . . LAMBDA ID . expr
+
+    LAMBDA          shift and go to state 47
+
+
+state 44
+
+    (3) expr -> IF ( expr ) . THEN expr ELSE expr
+
+    THEN            shift and go to state 48
+
+
+state 45
+
+    (5) expr -> LAMBDA ID . expr . ( expr )
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    (               shift and go to state 49
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+    LT              shift and go to state 15
+    LE              shift and go to state 16
+    GT              shift and go to state 17
+    GE              shift and go to state 18
+    EQ              shift and go to state 19
+    NEQ             shift and go to state 20
+
+
+state 46
+
+    (6) expr -> LAMBDA ( ID . . expr )
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 50
+
+state 47
+
+    (7) expr -> REC ID . LAMBDA . ID . expr
+
+    ID              shift and go to state 51
+
+
+state 48
+
+    (3) expr -> IF ( expr ) THEN . expr ELSE expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 52
+
+state 49
+
+    (5) expr -> LAMBDA ID . expr ( . expr )
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
 
     expr                           shift and go to state 53
 
+state 50
+
+    (6) expr -> LAMBDA ( ID . expr . )
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    )               shift and go to state 54
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+    LT              shift and go to state 15
+    LE              shift and go to state 16
+    GT              shift and go to state 17
+    GE              shift and go to state 18
+    EQ              shift and go to state 19
+    NEQ             shift and go to state 20
+
+
 state 51
 
-    (1) expr -> IF ( expr ) THEN expr ELSE . expr
-    (1) expr -> . IF ( expr ) THEN expr ELSE expr
-    (2) expr -> . IF ( expr ) THEN expr
-    (3) expr -> . ( expr )
-    (4) expr -> . LAMBDA ID . expr ( expr )
-    (5) expr -> . LAMBDA ID . expr
-    (6) expr -> . REC ID . LAMBDA ID . expr
-    (7) expr -> . expr PLUS expr
-    (8) expr -> . expr MINUS expr
-    (9) expr -> . expr TIMES expr
-    (10) expr -> . expr DIVIDE expr
-    (11) expr -> . expr MOD expr
-    (12) expr -> . expr LT expr
-    (13) expr -> . expr LE expr
-    (14) expr -> . expr GT expr
-    (15) expr -> . expr GE expr
-    (16) expr -> . expr EQ expr
-    (17) expr -> . expr NEQ expr
-    (18) expr -> . MINUS expr
-    (19) expr -> . PLUS expr
-    (20) expr -> . NAT
-    (21) expr -> . ID
+    (7) expr -> REC ID . LAMBDA ID . . expr
 
-    IF              shift and go to state 2
-    (               shift and go to state 3
-    LAMBDA          shift and go to state 4
-    REC             shift and go to state 6
-    MINUS           shift and go to state 8
-    PLUS            shift and go to state 7
-    NAT             shift and go to state 9
-    ID              shift and go to state 5
+    .               shift and go to state 55
 
-    expr                           shift and go to state 54
 
 state 52
 
-    (4) expr -> LAMBDA ID . expr ( expr ) .
+    (3) expr -> IF ( expr ) THEN expr . ELSE expr
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    MINUS           reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    TIMES           reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    DIVIDE          reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    MOD             reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    LT              reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    LE              reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    GT              reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    GE              reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    EQ              reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    NEQ             reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    $end            reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    )               reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    (               reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
-    ELSE            reduce using rule 4 (expr -> LAMBDA ID . expr ( expr ) .)
+    ELSE            shift and go to state 56
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+    LT              shift and go to state 15
+    LE              shift and go to state 16
+    GT              shift and go to state 17
+    GE              shift and go to state 18
+    EQ              shift and go to state 19
+    NEQ             shift and go to state 20
 
 
 state 53
 
-    (6) expr -> REC ID . LAMBDA ID . expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (5) expr -> LAMBDA ID . expr ( expr . )
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
+
+    )               shift and go to state 57
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+    LT              shift and go to state 15
+    LE              shift and go to state 16
+    GT              shift and go to state 17
+    GE              shift and go to state 18
+    EQ              shift and go to state 19
+    NEQ             shift and go to state 20
+
+
+state 54
+
+    (6) expr -> LAMBDA ( ID . expr ) .
+
+    PLUS            reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    MINUS           reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    TIMES           reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    DIVIDE          reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    MOD             reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    LT              reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    LE              reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    GT              reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    GE              reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    EQ              reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    NEQ             reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    $end            reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    )               reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    (               reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+    ELSE            reduce using rule 6 (expr -> LAMBDA ( ID . expr ) .)
+
+
+state 55
+
+    (7) expr -> REC ID . LAMBDA ID . . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 58
+
+state 56
+
+    (3) expr -> IF ( expr ) THEN expr ELSE . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . LAMBDA ID . expr ( expr )
+    (6) expr -> . LAMBDA ( ID . expr )
+    (7) expr -> . REC ID . LAMBDA ID . expr
+    (8) expr -> . expr PLUS expr
+    (9) expr -> . expr MINUS expr
+    (10) expr -> . expr TIMES expr
+    (11) expr -> . expr DIVIDE expr
+    (12) expr -> . expr MOD expr
+    (13) expr -> . expr LT expr
+    (14) expr -> . expr LE expr
+    (15) expr -> . expr GT expr
+    (16) expr -> . expr GE expr
+    (17) expr -> . expr EQ expr
+    (18) expr -> . expr NEQ expr
+    (19) expr -> . MINUS expr
+    (20) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    LAMBDA          shift and go to state 6
+    REC             shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 59
+
+state 57
+
+    (5) expr -> LAMBDA ID . expr ( expr ) .
+
+    PLUS            reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    MINUS           reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    TIMES           reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    DIVIDE          reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    MOD             reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    LT              reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    LE              reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    GT              reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    GE              reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    EQ              reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    NEQ             reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    $end            reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    )               reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    (               reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+    ELSE            reduce using rule 5 (expr -> LAMBDA ID . expr ( expr ) .)
+
+
+state 58
+
+    (7) expr -> REC ID . LAMBDA ID . expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1784,10 +1809,10 @@ state 53
   ! shift/reduce conflict for GE resolved as shift
   ! shift/reduce conflict for EQ resolved as shift
   ! shift/reduce conflict for NEQ resolved as shift
-    $end            reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .)
-    )               reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .)
-    (               reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .)
-    ELSE            reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .)
+    $end            reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .)
+    )               reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .)
+    (               reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .)
+    ELSE            reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .)
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     TIMES           shift and go to state 12
@@ -1800,49 +1825,49 @@ state 53
     EQ              shift and go to state 19
     NEQ             shift and go to state 20
 
-  ! PLUS            [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! MINUS           [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! TIMES           [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! DIVIDE          [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! MOD             [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! LT              [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! LE              [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! GT              [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! GE              [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! EQ              [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
-  ! NEQ             [ reduce using rule 6 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! PLUS            [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! MINUS           [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! TIMES           [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! DIVIDE          [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! MOD             [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! LT              [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! LE              [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! GT              [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! GE              [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! EQ              [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
+  ! NEQ             [ reduce using rule 7 (expr -> REC ID . LAMBDA ID . expr .) ]
 
 
-state 54
+state 59
 
-    (1) expr -> IF ( expr ) THEN expr ELSE expr .
-    (7) expr -> expr . PLUS expr
-    (8) expr -> expr . MINUS expr
-    (9) expr -> expr . TIMES expr
-    (10) expr -> expr . DIVIDE expr
-    (11) expr -> expr . MOD expr
-    (12) expr -> expr . LT expr
-    (13) expr -> expr . LE expr
-    (14) expr -> expr . GT expr
-    (15) expr -> expr . GE expr
-    (16) expr -> expr . EQ expr
-    (17) expr -> expr . NEQ expr
+    (3) expr -> IF ( expr ) THEN expr ELSE expr .
+    (8) expr -> expr . PLUS expr
+    (9) expr -> expr . MINUS expr
+    (10) expr -> expr . TIMES expr
+    (11) expr -> expr . DIVIDE expr
+    (12) expr -> expr . MOD expr
+    (13) expr -> expr . LT expr
+    (14) expr -> expr . LE expr
+    (15) expr -> expr . GT expr
+    (16) expr -> expr . GE expr
+    (17) expr -> expr . EQ expr
+    (18) expr -> expr . NEQ expr
 
-    PLUS            reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    MINUS           reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    TIMES           reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    DIVIDE          reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    MOD             reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    LT              reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    LE              reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    GT              reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    GE              reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    EQ              reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    NEQ             reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    $end            reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    )               reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    (               reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
-    ELSE            reduce using rule 1 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    PLUS            reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    MINUS           reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    TIMES           reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    DIVIDE          reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    MOD             reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    LT              reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    LE              reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    GT              reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    GE              reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    EQ              reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    NEQ             reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    $end            reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    )               reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    (               reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
+    ELSE            reduce using rule 3 (expr -> IF ( expr ) THEN expr ELSE expr .)
 
   ! PLUS            [ shift and go to state 10 ]
   ! MINUS           [ shift and go to state 11 ]
@@ -1859,26 +1884,14 @@ state 54
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for ( in state 43 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 43 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 43 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 43 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 43 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 43 resolved as shift
-WARNING: shift/reduce conflict for LT in state 43 resolved as shift
-WARNING: shift/reduce conflict for LE in state 43 resolved as shift
-WARNING: shift/reduce conflict for GT in state 43 resolved as shift
-WARNING: shift/reduce conflict for GE in state 43 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 43 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 43 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 53 resolved as shift
-WARNING: shift/reduce conflict for LT in state 53 resolved as shift
-WARNING: shift/reduce conflict for LE in state 53 resolved as shift
-WARNING: shift/reduce conflict for GT in state 53 resolved as shift
-WARNING: shift/reduce conflict for GE in state 53 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 53 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 58 resolved as shift
+WARNING: shift/reduce conflict for LT in state 58 resolved as shift
+WARNING: shift/reduce conflict for LE in state 58 resolved as shift
+WARNING: shift/reduce conflict for GT in state 58 resolved as shift
+WARNING: shift/reduce conflict for GE in state 58 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 58 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 58 resolved as shift

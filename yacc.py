@@ -3,17 +3,18 @@ from lexer import tokens
 # import ast as AST
 
 '''
-E : IF (E) THEN E ELSE E
-  | IF (E) THEN E
-  | lambda ID.E (E)
-  | lambda ID.E
-  | rec ID. lambda ID. E
+E | ID
+  | NAT
+  | IF (E) THEN E ELSE E
+  | (E)
+  | lambda ID . expr '(' expr ')'
+  | lambda (ID.E)
+  | rec ID . lambda ID . E
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
-  | NAT
-  | ID
-  | (E)
+
+
 
 F : lambda ID.E
 '''
@@ -35,12 +36,30 @@ precedence = (
     ('right', 'REC')
 )
 
+
+def p_expr_ID(p):
+    '''
+    expr : ID
+    '''
+    p[0] = p[1]
+
+
+def p_expr_NAT(p):
+    '''
+    expr : NAT
+    '''
+    p[0] = p[1]
+
+
 def p_expr_if(p):
     '''
     expr : IF '(' expr ')' THEN expr ELSE expr
-         | IF '(' expr ')' THEN expr
     '''
-    pass
+    if p[3]:
+        p[0] = p[6]
+    else:
+        p[0] = p[8]
+
 
 
 def p_expr_paren(p):
@@ -59,7 +78,7 @@ def p_expr_function_app(p):
 
 def p_expr_function_abs(p):
     '''
-    expr : LAMBDA ID '.' expr
+    expr : LAMBDA '('  ID '.' expr ')'
     '''
     pass
 
@@ -125,20 +144,6 @@ def p_expr_UMINUS(p):
 def p_expr_UPLUS(p):
     """expr : PLUS expr %prec UPLUS"""
     p[0] = p[2]
-
-
-def p_expr_NAT(p):
-    '''
-    expr : NAT
-    '''
-    p[0] = p[1]
-
-
-def p_expr_ID(p):
-    '''
-    expr : ID
-    '''
-    p[0] = p[1]
 
 
 # Error rule for syntax errors
