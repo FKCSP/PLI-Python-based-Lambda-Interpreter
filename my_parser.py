@@ -1,6 +1,6 @@
 from ply.yacc import yacc
-from lexer import tokens
-# import ast as AST
+from my_lexer import tokens
+import Abstact_Syntax_Tree as AST
 
 '''
 E | ID
@@ -37,7 +37,7 @@ def p_expr_ID(p):
     '''
     expr : ID
     '''
-    p[0] = p[1]
+    p[0] = AST.Variable(p[1])
 
 
 def p_expr_NAT(p):
@@ -68,14 +68,14 @@ def p_expr_function_app(p):
     '''
     expr : LAMBDA ID '.' expr '(' expr ')'
     '''
-    pass
+    p[0] = AST.Application(p[1], p[6])
 
 
 def p_expr_function_abs(p):
     '''
     expr : LAMBDA '('  ID '.' expr ')'
     '''
-    pass
+    p[0] = AST.Abstraction(AST.Variable(p[3]), p[5])
 
 
 def p_expr_recursive(p):
@@ -146,7 +146,7 @@ def p_error(p):
     print(p)
     print("Syntax error in input!")
 
-
+parser = yacc()
 
 if __name__ == '__main__':
     # Build the parser
