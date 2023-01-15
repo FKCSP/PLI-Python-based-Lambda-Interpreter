@@ -13,10 +13,6 @@ E | ID
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
-
-
-
-F : lambda ID.E
 '''
 
 precedence = (
@@ -34,9 +30,6 @@ precedence = (
     ('right', 'UPLUS', 'UMINUS'),
     # parentheses
     ('left', '(', ')'),
-    # lambda & recursive
-    ('right', 'LAMBDA'),
-    ('right', 'REC')
 )
 
 
@@ -64,7 +57,6 @@ def p_expr_if(p):
         p[0] = p[8]
 
 
-
 def p_expr_paren(p):
     '''
     expr : '(' expr ')'
@@ -88,7 +80,7 @@ def p_expr_function_abs(p):
 
 def p_expr_recursive(p):
     '''
-    expr : REC ID '.' LAMBDA ID '.' expr
+    expr : REC ID '.' '(' LAMBDA ID '.' expr ')'
     '''
     pass
 
