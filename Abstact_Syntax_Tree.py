@@ -11,7 +11,7 @@ class BinOps (object):
         return False
 
     def __str__(self):
-        return str(self.first)+self.ops+str(self.second)
+        return str(self.first)+' '+self.ops+' '+str(self.second)
 
 class UniOps (object):
     def __init__ (self, first, ops):
@@ -32,6 +32,9 @@ class CondBranch (object):
 
     def iswhnf(self):
         return False
+    
+    def __str__(self):
+        return 'if ('+str(self.cond)+ ') then '+str(self.expr1) + ' else '+str(self.expr2)
 
 class Variable (object):
     def __init__ (self, name: str):
@@ -56,7 +59,9 @@ class Application():
         self.second = second
 
     def __str__ (self):
-        return str(self.first) + ' ' + str(self.second)
+        left = str(self.first) if (isinstance(self.first, int) or isinstance(self.first, Variable) or isinstance(self.first, Abstraction)) else '('+str(self.first)+')'
+        right = str(self.second) if (isinstance(self.second, int) or isinstance(self.second, Variable) or isinstance(self.second, Abstraction)) else '('+str(self.second)+')'
+        return left + ' ' + right
 
     def __eq__(self, other):
         if isinstance(other, Application):

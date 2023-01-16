@@ -18,9 +18,12 @@ ops = {
 }
 
 def substitute(uTerm, uToSubstitute, uNewTerm):
-    if isinstance(uTerm, Variable):
+    if isinstance(uTerm, int):
+        return copy.deepcopy(uTerm)
+    elif isinstance(uTerm, Variable):
         if uTerm.name == uToSubstitute.name:
             return copy.deepcopy(uNewTerm)
+
     elif isinstance(uTerm, Application):
         uTerm.first = substitute(uTerm.first, uToSubstitute, uNewTerm)
         uTerm.second = substitute(uTerm.second, uToSubstitute, uNewTerm)
@@ -44,25 +47,51 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
 
     return copy.deepcopy(uTerm)
 
+def substitute_rec(uTerm, uToSubstitute, uNewTerm):
+    if isinstance(uTerm, int):
+        return copy.deepcopy(uTerm)
+    elif isinstance(uTerm, Variable):
+        if uTerm.name == uToSubstitute.name:
+            return copy.deepcopy(uNewTerm)
+    elif isinstance(uTerm, Application):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
+        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm,Abstraction):
+        if uTerm.variable.name == uToSubstitute.name:
+            return copy.deepcopy(uTerm)
+        uTerm.body = substitute_rec(uTerm.body, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, UniOps):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, BinOps):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
+        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, CondBranch):
+        uTerm.cond = substitute_rec(uTerm.cond, uToSubstitute, uNewTerm)
+        uTerm.expr1 = substitute_rec(uTerm.expr1, uToSubstitute, uNewTerm)
+        uTerm.expr2 = substitute_rec(uTerm.expr2, uToSubstitute, uNewTerm)
+    return copy.deepcopy(uTerm)
 
-def base_step(obj):
-    if isinstance(obj, Variable) or isinstance(obj, Abstraction):
+
+def recur_reduction(obj, y, Ast):
+    if isinstance(obj, int):
         return obj
-
-    ## leftmost-outermost choice of redex
+    elif isinstance(obj, Variable):
+        return obj if obj.name != y.name else Ast
+    elif isinstance(obj, CondBranch):
+        obj.cond = recur_reduction(obj.cond, y, Ast)
+        if isinstance(obj.cond, int):
+            return recur_reduction(obj.expr1, y, Ast) if obj.cond else recur_reduction(obj.expr2, y, Ast)
+        return obj
+    elif isinstance(obj, UniOps):
+        obj.first = recur_reduction(obj.first, y, Ast)
+        return interpret(obj)
+    elif isinstance(obj, BinOps):
+        obj.first = recur_reduction(obj.first, y, Ast)
+        obj.second = recur_reduction(obj.second, y, Ast)
     elif isinstance(obj, Application):
-        ## outermost
-        if isinstance(obj.second, Application):
-            return substitute(obj.first.body, obj.first.variable, obj.second)
-        else:
-            ## leftmost
-            new_first = base_step(obj._first)
-            if new_first != obj.first:
-                obj.first = new_first
-                return obj
-            else:
-                obj.second = base_step(obj.second)
-                return obj
+        obj = beta_reduction(obj)
+        
+    return interpret(obj)
 
 
 def beta_reduction(obj):
@@ -75,6 +104,12 @@ def beta_reduction(obj):
         return interpret(t)
     elif isinstance(obj.first, Recursive):
         Abs = obj.first.lamb
+        reduced_abs = interpret(obj.first)
+        second = interpret(obj.second)
+        t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
+        print(t)
+        return recur_reduction(t, obj.first.var1, Abs)
+
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
         obj.first = interpret(obj.first)
         obj.second = interpret(obj.second)
@@ -98,21 +133,21 @@ def interpret(obj):
         first, second = interpret(obj.first), interpret(obj.second)
         if isinstance(first, int) and isinstance(second, int):
             return ops[obj.ops](first, second)
-        first, second = parser.parse(str(first)), parser.parse(str(second))
-        return str(first)+obj.ops+str(second)
+        obj.first, obj.second = parser.parse(str(first)), parser.parse(str(second))
+        return obj
 
     elif isinstance(obj, UniOps):
         first = interpret(obj.first)
         if isinstance(first, int):
             return -first if obj.ops == "-" else first
-        first = parser.parse(str(first))
-        return obj.ops+str(first)
+        obj.first = parser.parse(str(first))
+        return obj
 
     elif isinstance(obj, CondBranch):
-        cond = interpret(obj.cond)
-        if isinstance(cond,int):
-            return interpret(obj.expr1) if cond else interpret(obj.expr2)
-        return 'if '+str(cond)+ ' then '+str(obj.expr1) + ' else '+str(obj.expr2)
+        obj.cond = interpret(obj.cond)
+        if isinstance(obj.cond, int):
+            return interpret(obj.expr1) if obj.cond else interpret(obj.expr2)
+        return obj
 
     elif isinstance(obj, Application):
         return beta_reduction(obj)
