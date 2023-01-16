@@ -7,13 +7,20 @@ E | ID
   | NAT
   | IF (E) THEN E ELSE E
   | (E)
-  | lambda ( ID . E ) E
-  | rec ID . lambda ( ID . E) E
+  | (E) E
   | lambda ( ID . E )
   | rec ID . lambda ( ID . E )
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
+'''
+
+'''
+定义结束状态：
+V
+NAT
+lambda ( ID . E )
+(V|NAT)*
 '''
 
 precedence = (
@@ -62,11 +69,11 @@ def p_expr_paren(p):
     p[0] = p[2]
 
 
-def p_expr_function_app_normal(p):
+def p_expr_function_app(p):
     '''
-    expr : LAMBDA '(' ID '.' expr ')' expr
+    expr : '(' expr ')' expr
     '''
-    p[0] = AST.Application(AST.Abstraction(p[3],p[5]), p[7])
+    p[0] = AST.Application(p[2], p[4])
 
 
 def p_expr_function_app_rec(p):
@@ -99,15 +106,15 @@ def p_expr_arith(p):
           | expr MOD expr
     '''
     if p[2] == '+':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '-':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '*':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '/' and p[3] != 0:
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '%' and p[3] != 0:
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     else:
         print("error!")
         exit(0)
@@ -123,27 +130,27 @@ def p_expr_comparisons(p):
           | expr NEQ expr
     '''
     if p[2] == '<':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '<=':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '>':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '>=':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     elif p[2] == '==':
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
     else:
-        p[0] = AST.BiArith(p[1],p[3],p[2])
+        p[0] = AST.BinOps(p[1],p[3],p[2])
 
 
 def p_expr_UMINUS(p):
     """expr : MINUS expr %prec UMINUS"""
-    p[0] = AST.UniArith(p[2],'-')
+    p[0] = AST.UniOps(p[2],'-')
 
 
 def p_expr_UPLUS(p):
     """expr : PLUS expr %prec UPLUS"""
-    p[0] = AST.UniArith(p[2],'+')
+    p[0] = AST.UniOpsh(p[2],'+')
 
 
 # Error rule for syntax errors

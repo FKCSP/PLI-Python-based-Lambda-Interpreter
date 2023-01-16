@@ -7,7 +7,7 @@ Rule 1     expr -> ID
 Rule 2     expr -> NAT
 Rule 3     expr -> IF ( expr ) THEN expr ELSE expr
 Rule 4     expr -> ( expr )
-Rule 5     expr -> LAMBDA ( ID . expr ) expr
+Rule 5     expr -> ( expr ) expr
 Rule 6     expr -> REC ID . LAMBDA ( ID . expr ) expr
 Rule 7     expr -> LAMBDA ( ID . expr )
 Rule 8     expr -> REC ID . LAMBDA ( ID . expr )
@@ -29,15 +29,15 @@ Terminals, with rules where they appear
 
 (                    : 3 4 5 6 7 8
 )                    : 3 4 5 6 7 8
-.                    : 5 6 6 7 8 8
+.                    : 6 6 7 8 8
 DIVIDE               : 12
 ELSE                 : 3
 EQ                   : 18
 GE                   : 17
 GT                   : 16
-ID                   : 1 5 6 6 7 8 8
+ID                   : 1 6 6 7 8 8
 IF                   : 3
-LAMBDA               : 5 6 7 8
+LAMBDA               : 6 7 8
 LE                   : 15
 LT                   : 14
 MINUS                : 10 20
@@ -63,7 +63,7 @@ state 0
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -85,8 +85,8 @@ state 0
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -170,11 +170,12 @@ state 4
 state 5
 
     (4) expr -> ( . expr )
+    (5) expr -> ( . expr ) expr
     (1) expr -> . ID
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -196,8 +197,8 @@ state 5
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -205,18 +206,17 @@ state 5
 
 state 6
 
-    (5) expr -> LAMBDA . ( ID . expr ) expr
-    (7) expr -> LAMBDA . ( ID . expr )
+    (6) expr -> REC . ID . LAMBDA ( ID . expr ) expr
+    (8) expr -> REC . ID . LAMBDA ( ID . expr )
 
-    (               shift and go to state 23
+    ID              shift and go to state 23
 
 
 state 7
 
-    (6) expr -> REC . ID . LAMBDA ( ID . expr ) expr
-    (8) expr -> REC . ID . LAMBDA ( ID . expr )
+    (7) expr -> LAMBDA . ( ID . expr )
 
-    ID              shift and go to state 24
+    (               shift and go to state 24
 
 
 state 8
@@ -226,7 +226,7 @@ state 8
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -248,8 +248,8 @@ state 8
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -262,7 +262,7 @@ state 9
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -284,8 +284,8 @@ state 9
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -298,7 +298,7 @@ state 10
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -320,8 +320,8 @@ state 10
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -334,7 +334,7 @@ state 11
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -356,8 +356,8 @@ state 11
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -370,7 +370,7 @@ state 12
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -392,8 +392,8 @@ state 12
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -406,7 +406,7 @@ state 13
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -428,8 +428,8 @@ state 13
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -442,7 +442,7 @@ state 14
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -464,8 +464,8 @@ state 14
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -478,7 +478,7 @@ state 15
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -500,8 +500,8 @@ state 15
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -514,7 +514,7 @@ state 16
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -536,8 +536,8 @@ state 16
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -550,7 +550,7 @@ state 17
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -572,8 +572,8 @@ state 17
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -586,7 +586,7 @@ state 18
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -608,8 +608,8 @@ state 18
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -622,7 +622,7 @@ state 19
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -644,8 +644,8 @@ state 19
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -658,7 +658,7 @@ state 20
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -680,8 +680,8 @@ state 20
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -694,7 +694,7 @@ state 21
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -716,8 +716,8 @@ state 21
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -726,6 +726,7 @@ state 21
 state 22
 
     (4) expr -> ( expr . )
+    (5) expr -> ( expr . ) expr
     (9) expr -> expr . PLUS expr
     (10) expr -> expr . MINUS expr
     (11) expr -> expr . TIMES expr
@@ -754,18 +755,17 @@ state 22
 
 state 23
 
-    (5) expr -> LAMBDA ( . ID . expr ) expr
-    (7) expr -> LAMBDA ( . ID . expr )
+    (6) expr -> REC ID . . LAMBDA ( ID . expr ) expr
+    (8) expr -> REC ID . . LAMBDA ( ID . expr )
 
-    ID              shift and go to state 40
+    .               shift and go to state 40
 
 
 state 24
 
-    (6) expr -> REC ID . . LAMBDA ( ID . expr ) expr
-    (8) expr -> REC ID . . LAMBDA ( ID . expr )
+    (7) expr -> LAMBDA ( . ID . expr )
 
-    .               shift and go to state 41
+    ID              shift and go to state 41
 
 
 state 25
@@ -1359,6 +1359,28 @@ state 38
 state 39
 
     (4) expr -> ( expr ) .
+    (5) expr -> ( expr ) . expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . ( expr ) expr
+    (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
+    (7) expr -> . LAMBDA ( ID . expr )
+    (8) expr -> . REC ID . LAMBDA ( ID . expr )
+    (9) expr -> . expr PLUS expr
+    (10) expr -> . expr MINUS expr
+    (11) expr -> . expr TIMES expr
+    (12) expr -> . expr DIVIDE expr
+    (13) expr -> . expr MOD expr
+    (14) expr -> . expr LT expr
+    (15) expr -> . expr LE expr
+    (16) expr -> . expr GT expr
+    (17) expr -> . expr GE expr
+    (18) expr -> . expr EQ expr
+    (19) expr -> . expr NEQ expr
+    (20) expr -> . MINUS expr
+    (21) expr -> . PLUS expr
 
     PLUS            reduce using rule 4 (expr -> ( expr ) .)
     MINUS           reduce using rule 4 (expr -> ( expr ) .)
@@ -1374,17 +1396,19 @@ state 39
     $end            reduce using rule 4 (expr -> ( expr ) .)
     )               reduce using rule 4 (expr -> ( expr ) .)
     ELSE            reduce using rule 4 (expr -> ( expr ) .)
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
 
+  ! MINUS           [ shift and go to state 9 ]
+  ! PLUS            [ shift and go to state 8 ]
+
+    expr                           shift and go to state 43
 
 state 40
-
-    (5) expr -> LAMBDA ( ID . . expr ) expr
-    (7) expr -> LAMBDA ( ID . . expr )
-
-    .               shift and go to state 43
-
-
-state 41
 
     (6) expr -> REC ID . . LAMBDA ( ID . expr ) expr
     (8) expr -> REC ID . . LAMBDA ( ID . expr )
@@ -1392,49 +1416,62 @@ state 41
     LAMBDA          shift and go to state 44
 
 
+state 41
+
+    (7) expr -> LAMBDA ( ID . . expr )
+
+    .               shift and go to state 45
+
+
 state 42
 
     (3) expr -> IF ( expr ) . THEN expr ELSE expr
 
-    THEN            shift and go to state 45
+    THEN            shift and go to state 46
 
 
 state 43
 
-    (5) expr -> LAMBDA ( ID . . expr ) expr
-    (7) expr -> LAMBDA ( ID . . expr )
-    (1) expr -> . ID
-    (2) expr -> . NAT
-    (3) expr -> . IF ( expr ) THEN expr ELSE expr
-    (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
-    (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
-    (7) expr -> . LAMBDA ( ID . expr )
-    (8) expr -> . REC ID . LAMBDA ( ID . expr )
-    (9) expr -> . expr PLUS expr
-    (10) expr -> . expr MINUS expr
-    (11) expr -> . expr TIMES expr
-    (12) expr -> . expr DIVIDE expr
-    (13) expr -> . expr MOD expr
-    (14) expr -> . expr LT expr
-    (15) expr -> . expr LE expr
-    (16) expr -> . expr GT expr
-    (17) expr -> . expr GE expr
-    (18) expr -> . expr EQ expr
-    (19) expr -> . expr NEQ expr
-    (20) expr -> . MINUS expr
-    (21) expr -> . PLUS expr
+    (5) expr -> ( expr ) expr .
+    (9) expr -> expr . PLUS expr
+    (10) expr -> expr . MINUS expr
+    (11) expr -> expr . TIMES expr
+    (12) expr -> expr . DIVIDE expr
+    (13) expr -> expr . MOD expr
+    (14) expr -> expr . LT expr
+    (15) expr -> expr . LE expr
+    (16) expr -> expr . GT expr
+    (17) expr -> expr . GE expr
+    (18) expr -> expr . EQ expr
+    (19) expr -> expr . NEQ expr
 
-    ID              shift and go to state 2
-    NAT             shift and go to state 3
-    IF              shift and go to state 4
-    (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
-    MINUS           shift and go to state 9
-    PLUS            shift and go to state 8
+    PLUS            reduce using rule 5 (expr -> ( expr ) expr .)
+    MINUS           reduce using rule 5 (expr -> ( expr ) expr .)
+    TIMES           reduce using rule 5 (expr -> ( expr ) expr .)
+    DIVIDE          reduce using rule 5 (expr -> ( expr ) expr .)
+    MOD             reduce using rule 5 (expr -> ( expr ) expr .)
+    LT              reduce using rule 5 (expr -> ( expr ) expr .)
+    LE              reduce using rule 5 (expr -> ( expr ) expr .)
+    GT              reduce using rule 5 (expr -> ( expr ) expr .)
+    GE              reduce using rule 5 (expr -> ( expr ) expr .)
+    EQ              reduce using rule 5 (expr -> ( expr ) expr .)
+    NEQ             reduce using rule 5 (expr -> ( expr ) expr .)
+    $end            reduce using rule 5 (expr -> ( expr ) expr .)
+    )               reduce using rule 5 (expr -> ( expr ) expr .)
+    ELSE            reduce using rule 5 (expr -> ( expr ) expr .)
 
-    expr                           shift and go to state 46
+  ! PLUS            [ shift and go to state 10 ]
+  ! MINUS           [ shift and go to state 11 ]
+  ! TIMES           [ shift and go to state 12 ]
+  ! DIVIDE          [ shift and go to state 13 ]
+  ! MOD             [ shift and go to state 14 ]
+  ! LT              [ shift and go to state 15 ]
+  ! LE              [ shift and go to state 16 ]
+  ! GT              [ shift and go to state 17 ]
+  ! GE              [ shift and go to state 18 ]
+  ! EQ              [ shift and go to state 19 ]
+  ! NEQ             [ shift and go to state 20 ]
+
 
 state 44
 
@@ -1446,12 +1483,12 @@ state 44
 
 state 45
 
-    (3) expr -> IF ( expr ) THEN . expr ELSE expr
+    (7) expr -> LAMBDA ( ID . . expr )
     (1) expr -> . ID
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -1473,8 +1510,8 @@ state 45
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -1482,7 +1519,50 @@ state 45
 
 state 46
 
-    (5) expr -> LAMBDA ( ID . expr . ) expr
+    (3) expr -> IF ( expr ) THEN . expr ELSE expr
+    (1) expr -> . ID
+    (2) expr -> . NAT
+    (3) expr -> . IF ( expr ) THEN expr ELSE expr
+    (4) expr -> . ( expr )
+    (5) expr -> . ( expr ) expr
+    (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
+    (7) expr -> . LAMBDA ( ID . expr )
+    (8) expr -> . REC ID . LAMBDA ( ID . expr )
+    (9) expr -> . expr PLUS expr
+    (10) expr -> . expr MINUS expr
+    (11) expr -> . expr TIMES expr
+    (12) expr -> . expr DIVIDE expr
+    (13) expr -> . expr MOD expr
+    (14) expr -> . expr LT expr
+    (15) expr -> . expr LE expr
+    (16) expr -> . expr GT expr
+    (17) expr -> . expr GE expr
+    (18) expr -> . expr EQ expr
+    (19) expr -> . expr NEQ expr
+    (20) expr -> . MINUS expr
+    (21) expr -> . PLUS expr
+
+    ID              shift and go to state 2
+    NAT             shift and go to state 3
+    IF              shift and go to state 4
+    (               shift and go to state 5
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
+    MINUS           shift and go to state 9
+    PLUS            shift and go to state 8
+
+    expr                           shift and go to state 49
+
+state 47
+
+    (6) expr -> REC ID . LAMBDA ( . ID . expr ) expr
+    (8) expr -> REC ID . LAMBDA ( . ID . expr )
+
+    ID              shift and go to state 50
+
+
+state 48
+
     (7) expr -> LAMBDA ( ID . expr . )
     (9) expr -> expr . PLUS expr
     (10) expr -> expr . MINUS expr
@@ -1496,44 +1576,7 @@ state 46
     (18) expr -> expr . EQ expr
     (19) expr -> expr . NEQ expr
 
-    )               shift and go to state 49
-    PLUS            shift and go to state 10
-    MINUS           shift and go to state 11
-    TIMES           shift and go to state 12
-    DIVIDE          shift and go to state 13
-    MOD             shift and go to state 14
-    LT              shift and go to state 15
-    LE              shift and go to state 16
-    GT              shift and go to state 17
-    GE              shift and go to state 18
-    EQ              shift and go to state 19
-    NEQ             shift and go to state 20
-
-
-state 47
-
-    (6) expr -> REC ID . LAMBDA ( . ID . expr ) expr
-    (8) expr -> REC ID . LAMBDA ( . ID . expr )
-
-    ID              shift and go to state 50
-
-
-state 48
-
-    (3) expr -> IF ( expr ) THEN expr . ELSE expr
-    (9) expr -> expr . PLUS expr
-    (10) expr -> expr . MINUS expr
-    (11) expr -> expr . TIMES expr
-    (12) expr -> expr . DIVIDE expr
-    (13) expr -> expr . MOD expr
-    (14) expr -> expr . LT expr
-    (15) expr -> expr . LE expr
-    (16) expr -> expr . GT expr
-    (17) expr -> expr . GE expr
-    (18) expr -> expr . EQ expr
-    (19) expr -> expr . NEQ expr
-
-    ELSE            shift and go to state 51
+    )               shift and go to state 51
     PLUS            shift and go to state 10
     MINUS           shift and go to state 11
     TIMES           shift and go to state 12
@@ -1549,29 +1592,44 @@ state 48
 
 state 49
 
-    (5) expr -> LAMBDA ( ID . expr ) . expr
+    (3) expr -> IF ( expr ) THEN expr . ELSE expr
+    (9) expr -> expr . PLUS expr
+    (10) expr -> expr . MINUS expr
+    (11) expr -> expr . TIMES expr
+    (12) expr -> expr . DIVIDE expr
+    (13) expr -> expr . MOD expr
+    (14) expr -> expr . LT expr
+    (15) expr -> expr . LE expr
+    (16) expr -> expr . GT expr
+    (17) expr -> expr . GE expr
+    (18) expr -> expr . EQ expr
+    (19) expr -> expr . NEQ expr
+
+    ELSE            shift and go to state 52
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+    TIMES           shift and go to state 12
+    DIVIDE          shift and go to state 13
+    MOD             shift and go to state 14
+    LT              shift and go to state 15
+    LE              shift and go to state 16
+    GT              shift and go to state 17
+    GE              shift and go to state 18
+    EQ              shift and go to state 19
+    NEQ             shift and go to state 20
+
+
+state 50
+
+    (6) expr -> REC ID . LAMBDA ( ID . . expr ) expr
+    (8) expr -> REC ID . LAMBDA ( ID . . expr )
+
+    .               shift and go to state 53
+
+
+state 51
+
     (7) expr -> LAMBDA ( ID . expr ) .
-    (1) expr -> . ID
-    (2) expr -> . NAT
-    (3) expr -> . IF ( expr ) THEN expr ELSE expr
-    (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
-    (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
-    (7) expr -> . LAMBDA ( ID . expr )
-    (8) expr -> . REC ID . LAMBDA ( ID . expr )
-    (9) expr -> . expr PLUS expr
-    (10) expr -> . expr MINUS expr
-    (11) expr -> . expr TIMES expr
-    (12) expr -> . expr DIVIDE expr
-    (13) expr -> . expr MOD expr
-    (14) expr -> . expr LT expr
-    (15) expr -> . expr LE expr
-    (16) expr -> . expr GT expr
-    (17) expr -> . expr GE expr
-    (18) expr -> . expr EQ expr
-    (19) expr -> . expr NEQ expr
-    (20) expr -> . MINUS expr
-    (21) expr -> . PLUS expr
 
     PLUS            reduce using rule 7 (expr -> LAMBDA ( ID . expr ) .)
     MINUS           reduce using rule 7 (expr -> LAMBDA ( ID . expr ) .)
@@ -1587,34 +1645,16 @@ state 49
     $end            reduce using rule 7 (expr -> LAMBDA ( ID . expr ) .)
     )               reduce using rule 7 (expr -> LAMBDA ( ID . expr ) .)
     ELSE            reduce using rule 7 (expr -> LAMBDA ( ID . expr ) .)
-    ID              shift and go to state 2
-    NAT             shift and go to state 3
-    IF              shift and go to state 4
-    (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
-
-  ! MINUS           [ shift and go to state 9 ]
-  ! PLUS            [ shift and go to state 8 ]
-
-    expr                           shift and go to state 52
-
-state 50
-
-    (6) expr -> REC ID . LAMBDA ( ID . . expr ) expr
-    (8) expr -> REC ID . LAMBDA ( ID . . expr )
-
-    .               shift and go to state 53
 
 
-state 51
+state 52
 
     (3) expr -> IF ( expr ) THEN expr ELSE . expr
     (1) expr -> . ID
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -1636,55 +1676,12 @@ state 51
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
     expr                           shift and go to state 54
-
-state 52
-
-    (5) expr -> LAMBDA ( ID . expr ) expr .
-    (9) expr -> expr . PLUS expr
-    (10) expr -> expr . MINUS expr
-    (11) expr -> expr . TIMES expr
-    (12) expr -> expr . DIVIDE expr
-    (13) expr -> expr . MOD expr
-    (14) expr -> expr . LT expr
-    (15) expr -> expr . LE expr
-    (16) expr -> expr . GT expr
-    (17) expr -> expr . GE expr
-    (18) expr -> expr . EQ expr
-    (19) expr -> expr . NEQ expr
-
-    PLUS            reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    MINUS           reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    TIMES           reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    DIVIDE          reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    MOD             reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    LT              reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    LE              reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    GT              reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    GE              reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    EQ              reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    NEQ             reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    $end            reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    )               reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-    ELSE            reduce using rule 5 (expr -> LAMBDA ( ID . expr ) expr .)
-
-  ! PLUS            [ shift and go to state 10 ]
-  ! MINUS           [ shift and go to state 11 ]
-  ! TIMES           [ shift and go to state 12 ]
-  ! DIVIDE          [ shift and go to state 13 ]
-  ! MOD             [ shift and go to state 14 ]
-  ! LT              [ shift and go to state 15 ]
-  ! LE              [ shift and go to state 16 ]
-  ! GT              [ shift and go to state 17 ]
-  ! GE              [ shift and go to state 18 ]
-  ! EQ              [ shift and go to state 19 ]
-  ! NEQ             [ shift and go to state 20 ]
-
 
 state 53
 
@@ -1694,7 +1691,7 @@ state 53
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -1716,8 +1713,8 @@ state 53
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
     MINUS           shift and go to state 9
     PLUS            shift and go to state 8
 
@@ -1804,7 +1801,7 @@ state 56
     (2) expr -> . NAT
     (3) expr -> . IF ( expr ) THEN expr ELSE expr
     (4) expr -> . ( expr )
-    (5) expr -> . LAMBDA ( ID . expr ) expr
+    (5) expr -> . ( expr ) expr
     (6) expr -> . REC ID . LAMBDA ( ID . expr ) expr
     (7) expr -> . LAMBDA ( ID . expr )
     (8) expr -> . REC ID . LAMBDA ( ID . expr )
@@ -1840,8 +1837,8 @@ state 56
     NAT             shift and go to state 3
     IF              shift and go to state 4
     (               shift and go to state 5
-    LAMBDA          shift and go to state 6
-    REC             shift and go to state 7
+    REC             shift and go to state 6
+    LAMBDA          shift and go to state 7
 
   ! MINUS           [ shift and go to state 9 ]
   ! PLUS            [ shift and go to state 8 ]

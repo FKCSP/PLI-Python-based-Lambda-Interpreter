@@ -1,7 +1,7 @@
 import copy
 from my_parser import parser
 from operator import (add, sub, mul, truediv, mod, lt, le, eq, ne, gt, ge)
-from Abstact_Syntax_Tree import Variable, Application, Abstraction, BiArith, UniArith, CondBranch
+from Abstact_Syntax_Tree import Variable, Application, Abstraction, BinOps, UniOps, CondBranch
 
 ops = {
     "+": add,
@@ -30,6 +30,18 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
             uTerm.variable = substitute(uTerm.variable, uToSubstitute, uNewTerm)
         uTerm.body = substitute(uTerm.body, uToSubstitute, uNewTerm)
 
+    elif isinstance(uTerm, UniOps):
+        uTerm.first = substitute(uTerm.first, uToSubstitute, uNewTerm)
+
+    elif isinstance(uTerm, BinOps):
+        uTerm.first = substitute(uTerm.first, uToSubstitute, uNewTerm)
+        uTerm.second = substitute(uTerm.second, uToSubstitute, uNewTerm)
+
+    elif isinstance(uTerm, CondBranch):
+        uTerm.cond = substitute(uTerm.cond, uToSubstitute, uNewTerm)
+        uTerm.expr1 = substitute(uTerm.expr1, uToSubstitute, uNewTerm)
+        uTerm.expr2 = substitute(uTerm.expr2, uToSubstitute, uNewTerm)
+
     return copy.deepcopy(uTerm)
 
 
@@ -40,53 +52,63 @@ def base_step(obj):
     ## leftmost-outermost choice of redex
     elif isinstance(obj, Application):
         ## outermost
-        if isinstance(obj.first, Abstraction):
-            return substitute(uTerm.first.body, uTerm.first.variable, uTerm.second)
+        if isinstance(obj.second, Application):
+            return substitute(obj.first.body, obj.first.variable, obj.second)
         else:
             ## leftmost
-            new_first = base_step(uTerm._first)
-            if new_first != uTerm.first:
-                uTerm.first = newfirst
-                return uTerm
+            new_first = base_step(obj._first)
+            if new_first != obj.first:
+                obj.first = new_first
+                return obj
             else:
-                uTerm.second = base_step(uTerm.second)
-                return uTerm
-
-
+                obj.second = base_step(obj.second)
+                return obj
 
 def beta_reduction(obj):
-    if isinstance(obj, Variable) or isinstance(obj, Abstraction):
-        return obj
+    if isinstance(obj.first, Variable) or isinstance(obj.first, int):
+        second = interpret(obj.second)
+        return Application(obj.first, second)
+    if isinstance(obj.first, Abstraction):
+        second = interpret(obj.second)
+        t =  substitute(obj.first.body, obj.first.variable, second)
+        return interpret(t)
+    else:
+        pass
 
-    elif isinstance(obj, Application):
-        t = obj
-        reductions = []
 
-        while (True):
-            t_str = str(t)
-            new_t = base_step(t)
-            new_t_str = str(new_t)
+# def beta_reduction(obj):
+#     if isinstance(obj, Variable) or isinstance(obj, Abstraction):
+#         return obj
 
-            if new_t.iswhnf() :
-                for b, a in reductions:
-                    print(b, " -> ", a)
-                return new_t
-            else:
-                reductions.append((t_str, new_t_str))
-                t = new_t
+#     elif isinstance(obj, Application):
+#         t = obj
+#         reductions = []
+
+#         while (True):
+#             t_str = str(t)
+#             new_t = base_step(t)
+#             new_t_str = str(new_t)
+
+#             if new_t.iswhnf() :
+#                 for b, a in reductions:
+#                     print(b, " -> ", a)
+#                 return new_t
+#             else:
+#                 reductions.append((t_str, new_t_str))
+#                 t = new_t
 
 def interpret(obj):
     if isinstance(obj, Variable) or isinstance(obj, Abstraction) or isinstance(obj, int):
         return obj
 
-    elif isinstance(obj, BiArith):
+    elif isinstance(obj, BinOps):
         first, second = interpret(obj.first), interpret(obj.second)
         if isinstance(first, int) and isinstance(second, int):
             return ops[obj.ops](first, second)
         first, second = parser.parse(str(first)), parser.parse(str(second))
         return str(first)+obj.ops+str(second)
 
-    elif isinstance(obj, UniArith):
+    elif isinstance(obj, UniOps):
         first = interpret(obj.first)
         if isinstance(first, int):
             return -first if obj.ops == "-" else first
@@ -100,4 +122,21 @@ def interpret(obj):
         return 'if '+str(cond)+ ' then '+str(obj.expr1) + ' else '+str(obj.expr2)
 
     elif isinstance(obj, Application):
-        pass
+        return beta_reduction(obj)
+        print(obj.first)
+        print(obj.second)
+        # t = obj
+        # reductions = []
+
+        # while (True):
+        #     t_str = str(t)
+        #     new_t = base_step(t)
+        #     new_t_str = str(new_t)
+
+        #     if new_t.iswhnf() :
+        #         for b, a in reductions:
+        #             print(b, " -> ", a)
+        #         return new_t
+        #     else:
+        #         reductions.append((t_str, new_t_str))
+        #         t = new_t

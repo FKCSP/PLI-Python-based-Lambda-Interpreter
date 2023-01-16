@@ -1,7 +1,7 @@
 '''
 whnf is short for weak head normal form: which means the expression can no longer be simplief further. The work 'weak' means that although the inner part may not be its simplest form: for example: lambda x: 1+1 is in whnf! While 1+1 is not.
 '''
-class BiArith (object):
+class BinOps (object):
     def __init__ (self, first, second, ops):
         self.first = first
         self.second = second
@@ -13,7 +13,7 @@ class BiArith (object):
     def __str__(self):
         return str(self.first)+self.ops+str(self.second)
 
-class UniArith (object):
+class UniOps (object):
     def __init__ (self, first, ops):
         self.first = first
         self.ops = ops
@@ -56,7 +56,7 @@ class Application():
         self.second = second
 
     def __str__ (self):
-        return str(self.first) + str(self.second)
+        return str(self.first) + ' ' + str(self.second)
 
     def __eq__(self, other):
         if isinstance(other, Application):
