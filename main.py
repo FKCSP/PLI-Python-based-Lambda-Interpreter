@@ -1,6 +1,6 @@
 from my_parser import parser
 from interpreter import beta_reduction, interpret
-import cmd
+from cmd import Cmd
 
 PROMPT = '>>>'
 INTRO_STR = \
@@ -16,9 +16,9 @@ Welcome to PLI(Python based Lambda expression Interpreter) developed by Yikai Zh
 
 """
 
-class main_loop(cmd.Cmd):
+class main_loop(Cmd):
     def __init__(self, *args, **kwargs):
-        cmd.Cmd.__init__ (self)
+        Cmd.__init__ (self)
         self.prompt = PROMPT
         self.intro = INTRO_STR
 
@@ -26,6 +26,11 @@ class main_loop(cmd.Cmd):
         input_str = parser.parse(s)
         reduced_term = interpret(input_str)
         print(reduced_term)
+
+    def do_run(self, file):
+        with open(file) as f:
+            for text in f.readlines():
+                self.default(text.strip())
 
     def do_EOF(self, line):
         print("Bye!")
