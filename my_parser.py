@@ -16,7 +16,7 @@ E | ID
 '''
 
 '''
-定义结束状态：
+terminal states：
 V
 NAT
 lambda ( ID . E )
