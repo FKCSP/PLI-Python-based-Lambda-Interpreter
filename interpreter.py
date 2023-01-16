@@ -78,8 +78,10 @@ def beta_reduction(obj):
         obj.second = interpret(obj.second)
         return interpret(copy.deepcopy(obj))
     else:
-        pass
+        obj.first = interpret(obj.first)
+        return beta_reduction(copy.deepcopy(obj))
         # left most
+
 
 
 # def beta_reduction(obj):
