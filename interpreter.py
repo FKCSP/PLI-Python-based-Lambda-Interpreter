@@ -70,12 +70,12 @@ def substitute_rec(uTerm, uToSubstitute, uNewTerm):
         uTerm.expr1 = substitute_rec(uTerm.expr1, uToSubstitute, uNewTerm)
         uTerm.expr2 = substitute_rec(uTerm.expr2, uToSubstitute, uNewTerm)
     return copy.deepcopy(uTerm)
-    
+
 def recur_reduction(obj, y, Ast):
     if isinstance(obj, int):
         return obj
     elif isinstance(obj, Variable):
-        return obj if obj.name != y.name else Ast
+        return obj if obj.name != y.name else copy.deepcopy(Ast)
     elif isinstance(obj, CondBranch):
         obj.cond = recur_reduction(obj.cond, y, Ast)
         if isinstance(obj.cond, int) or isinstance(obj.cond, bool):
@@ -106,12 +106,12 @@ def beta_reduction_rec(obj):
         second = interpret(obj.second)
         t =  substitute_rec(obj.first.body, obj.first.variable, second)
         return interpret(t)
-    elif isinstance(obj.first, Recursive):
-        Abs = obj.first.lamb
-        reduced_abs = interpret(obj.first)
-        second = interpret(obj.second)
-        t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
-        return recur_reduction(t, obj.first.var1, Abs)
+    # elif isinstance(obj.first, Recursive):
+    #     Abs = obj.first.lamb
+    #     reduced_abs = interpret(obj.first)
+    #     second = interpret(obj.second)
+    #     t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
+    #     return recur_reduction(t, obj.first.var1, Abs)
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
         obj.first = interpret(obj.first)
         obj.second = interpret(obj.second)
@@ -130,7 +130,7 @@ def beta_reduction(obj):
         t =  substitute(obj.first.body, obj.first.variable, second)
         return interpret(t)
     elif isinstance(obj.first, Recursive):
-        Abs = obj.first.lamb
+        Abs = copy.deepcopy(obj.first.lamb)
         reduced_abs = interpret(obj.first)
         second = interpret(obj.second)
         t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
