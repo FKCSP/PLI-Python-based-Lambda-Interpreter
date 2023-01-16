@@ -18,9 +18,9 @@ You can run PLI in the project repository directly via:
 
 ### Here are a few conventions you should notice when using PLI
 
-- PLI's small step semantic striclty follows the call by value rule.
+- PLI's small step semantic striclty follows the **_call by value_** rule.
 
-- The input format is strictly restricted, illegal format will not be recoginized, you can refer to the **rules** below or **Examples** for a quick start.
+- The input format is strictly restricted, illegal format will not be recoginized, you can refer to the **_rules_** below or **_Examples_** for a quick start.
 
 - Notice that this interpreter can only interpret expressions, commands are not supported.
 
@@ -28,31 +28,20 @@ You can run PLI in the project repository directly via:
 
 ### The whole shift reduce rules are as follows
 
-'''
-
+```
 E | ID
+  | NAT
+  | IF (E) THEN E ELSE E
+  | (E)
+  | (E) E
+  | LAMBDA ( ID . E )
+  | REC ID . LAMBDA ( ID . E )
+  | E + E | E - E | E * E | E / E | E % E
+  | E < E | E <= E | E > E | E >= E | E == E | E != E
+  | -E | +E
+```
 
-| NAT
-
-| IF (E) THEN E ELSE E
-
-| (E)
-
-| (E) E
-
-| LAMBDA ( ID . E )
-
-| REC ID . LAMBDA ( ID . E )
-
-| E + E | E - E | E \* E | E / E | E % E
-
-| E < E | E <= E | E > E | E >= E | E == E | E != E
-
-| -E | +E
-
-'''
-
-Input that cannot be completely reduced be the rules will cause an error.
+Input that cannot be completely reduced by the rules will cause an error.
 
 ## Examples
 
@@ -60,24 +49,24 @@ Input that cannot be completely reduced be the rules will cause an error.
 
 `>>> if (10 * 9 > 80) then 1 else 0`
 
-`>>> 1`
+`1`
 
 ### Function Abstraction(note that the brackets are mandatory)
 
 `>>> \(x.x)`
 
-`>>> \(x.x)`
+`(\x.x)`
 
 ### Function Application(The first term should be braced)
 
 `>>> (\(x.x + 10)) 5`
 
-`>>> 15`
+`15`
 
 ### Complicated Ones
 
 `>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
-`>>> 4`
+`4`
 
 ## More testcases
 
