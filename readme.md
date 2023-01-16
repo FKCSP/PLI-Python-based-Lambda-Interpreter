@@ -51,6 +51,10 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `8`
 
+`>>> 5*9+9/2-8%5`
+
+`46`
+
 ### IF expression
 
 `>>> if (10 * 9 > 80) then 1 else 0`
