@@ -63,6 +63,12 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `15`
 
+### Recursive Function
+
+`>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
+
+`24`
+
 ### Complicated Ones
 
 `>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
