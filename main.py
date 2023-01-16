@@ -1,6 +1,6 @@
 from my_lexer import lexer
 from my_parser import parser
-from interpreter import beta_reduction
+from interpreter import beta_reduction, interpret
 import cmd
 
 PROMPT = '>>>'
@@ -17,7 +17,8 @@ class main_loop(cmd.Cmd):
 
     def default(self, s):
         input_str = parser.parse(s)
-        reduced_term = beta_reduction(input_str)
+        reduced_term = interpret(input_str)
+        # reduced_term = beta_reduction(input_str)
         print(reduced_term)
 
     def do_EOF(self, line):

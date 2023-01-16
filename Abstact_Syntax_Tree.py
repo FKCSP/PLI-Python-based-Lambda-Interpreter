@@ -9,6 +9,9 @@ class BiArith (object):
 
     def iswhnf(self):
         return False
+    
+    def __str__(self):
+        return str(self.first)+self.ops+str(self.second)
 
 class UniArith (object):
     def __init__ (self, first, ops):
@@ -17,6 +20,9 @@ class UniArith (object):
 
     def iswhnf(self):
         return False
+    
+    def __str__(self):
+        return self.ops+str(self.first)
 
 class CondBranch (object):
     def __init__ (self, cond, expr1, expr2):

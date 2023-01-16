@@ -44,7 +44,7 @@ def p_expr_NAT(p):
     '''
     expr : NAT
     '''
-    p[0] = p[1]
+    p[0] = int(p[1])
 
 
 def p_expr_if(p):
@@ -74,9 +74,9 @@ def p_expr_function_app(p):
 
 def p_expr_function_abs(p):
     '''
-    expr : LAMBDA '('  ID '.' expr ')'
+    expr : LAMBDA  ID '.' expr 
     '''
-    p[0] = AST.Abstraction(AST.Variable(p[3]), p[5])
+    p[0] = AST.Abstraction(AST.Variable(p[2]), p[4])
 
 
 def p_expr_recursive(p):
