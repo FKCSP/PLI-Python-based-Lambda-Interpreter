@@ -57,18 +57,18 @@ Input that cannot be completely reduced be the rules will cause an error.
 
 `>>> \(x.x)`
 
-`>>> \(x.x)`
+`\(x.x)`
 
 ### Function Application(The first term should be braced)
 
 `>>> (\(x.x + 10)) 5`
 
-`>>> 15`
+`15`
 
 ### Complicated Ones
 
 `>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
-`>>> 4`
+`4`
 
 ## More testcases
 
