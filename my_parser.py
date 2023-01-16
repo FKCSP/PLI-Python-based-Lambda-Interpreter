@@ -69,7 +69,7 @@ def p_expr_function_app(p):
     '''
     expr : LAMBDA ID '.' expr '(' expr ')'
     '''
-    p[0] = AST.Application(p[1], p[6])
+    p[0] = AST.Application(AST.Abstraction(p[2],p[4]), p[6])
 
 
 def p_expr_function_abs(p):

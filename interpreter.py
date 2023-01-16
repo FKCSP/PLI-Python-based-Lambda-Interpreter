@@ -99,3 +99,5 @@ def interpret(obj):
             return interpret(obj.expr1) if cond else interpret(obj.expr2)
         return 'if '+str(cond)+ ' then '+str(obj.expr1) + ' else '+str(obj.expr2)
     
+    elif isinstance(obj, Application):
+        pass
