@@ -79,7 +79,7 @@ def recur_reduction(obj, y, Ast):
         return obj if obj.name != y.name else Ast
     elif isinstance(obj, CondBranch):
         obj.cond = recur_reduction(obj.cond, y, Ast)
-        if isinstance(obj.cond, int):
+        if isinstance(obj.cond, int) or isinstance(obj.cond, bool):
             return recur_reduction(obj.expr1, y, Ast) if obj.cond else recur_reduction(obj.expr2, y, Ast)
         return obj
     elif isinstance(obj, UniOps):
@@ -135,6 +135,7 @@ def beta_reduction(obj):
         reduced_abs = interpret(obj.first)
         second = interpret(obj.second)
         t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
+        print(t)
         return recur_reduction(t, obj.first.var1, Abs)
 
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
