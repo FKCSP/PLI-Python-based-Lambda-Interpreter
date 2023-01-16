@@ -89,3 +89,16 @@ class Abstraction():
 
     def iswhnf(self):
         return True
+
+class Recursive():
+    def __init__(self, var1: Variable, var2: Variable, body):
+        self.var1 = var1
+        self.var2 = var2
+        self.body = body
+        self.lamb = Abstraction(var2, body)
+    
+    def __str__(self):
+        return '(rec ' + str(self.var1) + '.\\' + str(self.var2) + '.' + str(self.body) + ')'
+    
+    def iswhnf(self):
+        return False

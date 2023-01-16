@@ -83,28 +83,6 @@ def beta_reduction(obj):
         # left most
 
 
-
-# def beta_reduction(obj):
-#     if isinstance(obj, Variable) or isinstance(obj, Abstraction):
-#         return obj
-
-#     elif isinstance(obj, Application):
-#         t = obj
-#         reductions = []
-
-#         while (True):
-#             t_str = str(t)
-#             new_t = base_step(t)
-#             new_t_str = str(new_t)
-
-#             if new_t.iswhnf() :
-#                 for b, a in reductions:
-#                     print(b, " -> ", a)
-#                 return new_t
-#             else:
-#                 reductions.append((t_str, new_t_str))
-#                 t = new_t
-
 def interpret(obj):
     if isinstance(obj, Variable) or isinstance(obj, Abstraction) or isinstance(obj, int):
         return obj
@@ -131,20 +109,3 @@ def interpret(obj):
 
     elif isinstance(obj, Application):
         return beta_reduction(obj)
-        print(obj.first)
-        print(obj.second)
-        # t = obj
-        # reductions = []
-
-        # while (True):
-        #     t_str = str(t)
-        #     new_t = base_step(t)
-        #     new_t_str = str(new_t)
-
-        #     if new_t.iswhnf() :
-        #         for b, a in reductions:
-        #             print(b, " -> ", a)
-        #         return new_t
-        #     else:
-        #         reductions.append((t_str, new_t_str))
-        #         t = new_t
