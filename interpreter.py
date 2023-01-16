@@ -50,8 +50,27 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
 def substitute_rec(uTerm, uToSubstitute, uNewTerm):
     if isinstance(uTerm,Abstraction):
         return copy.deepcopy(uTerm)
-    return substitute(uTerm, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, int):
+        return copy.deepcopy(uTerm)
+    elif isinstance(uTerm, Variable):
+        if uTerm.name == uToSubstitute.name:
+            return copy.deepcopy(uNewTerm)
+    elif isinstance(uTerm, Application):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
+        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
+    elif isinstance(uTerm, UniOps):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
 
+    elif isinstance(uTerm, BinOps):
+        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
+        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
+
+    elif isinstance(uTerm, CondBranch):
+        uTerm.cond = substitute_rec(uTerm.cond, uToSubstitute, uNewTerm)
+        uTerm.expr1 = substitute_rec(uTerm.expr1, uToSubstitute, uNewTerm)
+        uTerm.expr2 = substitute_rec(uTerm.expr2, uToSubstitute, uNewTerm)
+    return copy.deepcopy(uTerm)
+    
 def recur_reduction(obj, y, Ast):
     if isinstance(obj, int):
         return obj
