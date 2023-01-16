@@ -69,18 +69,20 @@ def beta_reduction(obj):
     if isinstance(obj.first, Variable) or isinstance(obj.first, int):
         second = interpret(obj.second)
         return Application(obj.first, second)
-    if isinstance(obj.first, Abstraction):
+    elif isinstance(obj.first, Abstraction):
         second = interpret(obj.second)
         t =  substitute(obj.first.body, obj.first.variable, second)
         return interpret(t)
-    if isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
+    elif isinstance(obj.first, Recursive):
+        Abs = obj.first.lamb
+    elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
         obj.first = interpret(obj.first)
         obj.second = interpret(obj.second)
         return interpret(copy.deepcopy(obj))
     else:
+        # left most
         obj.first = interpret(obj.first)
         return beta_reduction(copy.deepcopy(obj))
-        # left most
 
 
 def interpret(obj):

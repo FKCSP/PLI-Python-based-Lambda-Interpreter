@@ -128,18 +128,7 @@ def p_expr_comparisons(p):
           | expr EQ expr
           | expr NEQ expr
     '''
-    if p[2] == '<':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '<=':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '>':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '>=':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '==':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    else:
-        p[0] = AST.BinOps(p[1],p[3],p[2])
+    p[0] = AST.BinOps(p[1],p[3],p[2])
 
 
 def p_expr_UMINUS(p):
