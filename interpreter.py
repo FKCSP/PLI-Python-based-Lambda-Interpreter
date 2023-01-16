@@ -153,7 +153,7 @@ def interpret(obj):
     elif isinstance(obj, BinOps):
         obj.first, obj.second = interpret(obj.first), interpret(obj.second)
         if isinstance(obj.first, int) and isinstance(obj.second, int):
-            return ops[obj.ops](obj.first, obj.second)
+            return int(ops[obj.ops](obj.first, obj.second))
         return obj
 
     elif isinstance(obj, UniOps):
