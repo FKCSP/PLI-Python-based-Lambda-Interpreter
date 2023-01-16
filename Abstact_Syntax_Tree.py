@@ -7,11 +7,26 @@ class BiArith (object):
         self.second = second
         self.ops = ops
 
+    def iswhnf(self):
+        return False
+
 class UniArith (object):
     def __init__ (self, first, ops):
         self.first = first
         self.ops = ops
 
+    def iswhnf(self):
+        return False
+
+class Cond (object):
+    def __init__ (self, cond, expr1, expr2):
+        self.cond = cond
+        self.expr1 = expr1
+        self.expr2 = expr2
+    
+    def iswhnf(self):
+        return False
+        
 class Variable (object):
     def __init__ (self, name: str):
         self.name = name
