@@ -14,6 +14,10 @@ You can run PLI in the project repository directly via:
 
 `python main.py`
 
+## Rules
+
+
+
 ## Conventions
 
 ### Here are a few conventions you should notice when using PLI:
