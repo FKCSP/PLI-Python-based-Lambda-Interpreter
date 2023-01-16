@@ -72,8 +72,12 @@ def beta_reduction(obj):
         second = interpret(obj.second)
         t =  substitute(obj.first.body, obj.first.variable, second)
         return interpret(t)
+    if isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
+        obj.first = interpret(obj.first)
+        obj.second = interpret(obj.second)
+        return interpret(copy.deepcopy(obj))
     else:
-        pass
+        # left most
 
 
 # def beta_reduction(obj):
