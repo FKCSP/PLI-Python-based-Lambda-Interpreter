@@ -18,9 +18,9 @@ You can run PLI in the project repository directly via:
 
 ### Here are a few conventions you should notice when using PLI
 
-- PLI's small step semantic striclty follows the call by value rule.
+- PLI's small step semantic striclty follows the **_call by value_** rule.
 
-- The input format is strictly restricted, illegal format will not be recoginized, you can refer to the **rules** below or **Examples** for a quick start.
+- The input format is strictly restricted, illegal format will not be recoginized, you can refer to the **_rules_** below or **_Examples_** for a quick start.
 
 - Notice that this interpreter can only interpret expressions, commands are not supported.
 
@@ -43,7 +43,7 @@ E | ID
 
 ```
 
-Input that cannot be completely reduced be the rules will cause an error.
+Input that cannot be completely reduced by the rules will cause an error.
 
 ## Examples
 
