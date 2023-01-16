@@ -45,6 +45,12 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 ## Examples
 
+### Arithmetic Operation
+
+`>>> 3+4*2`
+
+`8`
+
 ### IF expression
 
 `>>> if (10 * 9 > 80) then 1 else 0`
