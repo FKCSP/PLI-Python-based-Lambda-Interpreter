@@ -28,7 +28,7 @@ You can run PLI in the project repository directly via:
 
 ### The whole shift reduce rules are as follows
 
-'''
+```
 
 E | ID
 
@@ -50,7 +50,7 @@ E | ID
 
 | -E | +E
 
-'''
+```
 
 Input that cannot be completely reduced be the rules will cause an error.
 
