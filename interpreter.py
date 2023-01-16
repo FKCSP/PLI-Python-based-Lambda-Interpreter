@@ -93,13 +93,34 @@ def recur_reduction(obj, y, Ast):
         obj.body = recur_reduction(obj.body, y, Ast)
         return obj
     elif isinstance(obj, Application):
-        obj = beta_reduction(obj)
+        obj = beta_reduction_rec(obj)
         if isinstance(obj, Application):
             obj.first = recur_reduction(obj.first, y, Ast)
             obj.second = recur_reduction(obj.second, y, Ast)
         return recur_reduction(obj, y, Ast)
     
-
+def beta_reduction_rec(obj):
+    if isinstance(obj.first, Variable) or isinstance(obj.first, int):
+        second = interpret(obj.second)
+        return Application(obj.first, second)
+    elif isinstance(obj.first, Abstraction):
+        second = interpret(obj.second)
+        t =  substitute_rec(obj.first.body, obj.first.variable, second)
+        return interpret(t)
+    elif isinstance(obj.first, Recursive):
+        Abs = obj.first.lamb
+        reduced_abs = interpret(obj.first)
+        second = interpret(obj.second)
+        t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
+        return recur_reduction(t, obj.first.var1, Abs)
+    elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
+        obj.first = interpret(obj.first)
+        obj.second = interpret(obj.second)
+        return interpret(copy.deepcopy(obj))
+    else:
+        # left most
+        obj.first = interpret(obj.first)
+        return beta_reduction(copy.deepcopy(obj))
 
 def beta_reduction(obj):
     if isinstance(obj.first, Variable) or isinstance(obj.first, int):
