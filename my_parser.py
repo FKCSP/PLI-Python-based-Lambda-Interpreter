@@ -105,19 +105,18 @@ def p_expr_arith(p):
           | expr DIVIDE expr
           | expr MOD expr
     '''
-    if p[2] == '+':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '-':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '*':
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '/' and p[3] != 0:
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    elif p[2] == '%' and p[3] != 0:
-        p[0] = AST.BinOps(p[1],p[3],p[2])
-    else:
+    if p[2] not in ('+','-','*','/','%'):
         print("error!")
         exit(0)
+    elif p[2] == '/' and p[3] == 0:
+        print("division by zero!")
+        exit(0)
+    elif p[2] == '%' and p[3] == 0:
+        print("division by zero!")
+        exit(0)
+    else:
+        p[0] = AST.BinOps(p[1],p[3],p[2])
+        
 
 
 def p_expr_comparisons(p):
