@@ -32,9 +32,9 @@ You can run PLI in the project repository directly via:
 
 E | ID
 
-| NAT
+  | NAT
 
-| IF (E) THEN E ELSE E
+  | IF (E) THEN E ELSE E
 
 | (E)
 
