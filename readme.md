@@ -1,19 +1,39 @@
 # Python based Lambda Interpreter
 
-#### The input format is strictly restricted, illegal format will not be recoginized by the interpreter!
+## Prerequisites
 
-#### Notice that this interpreter can only interpret expressions, commands are not considered, which makes the if branching consists only of expressions in either branches.
+PIL is developed based on python package PLY("https://github.com/dabeaz/ply")
 
-#### Plus, all the expressions appeared in the Lambda expression are required to be closed expressions, free Vars are not consiedered.
+Use the following command to install depencies:
 
-Conditional branching expression should be like:
+`pip install PLY`
+
+## Run
+
+You can run PLI in the project repository directly via:
+
+`python main.py`
+
+## Conventions
+
+### Here are a few conventions you should notice when using PLI:
+
+- The input format is strictly restricted, illegal format will not be recoginized by the interpreter, you can refer to the **Examples** for a quick start.
+
+- Notice that this interpreter can only interpret expressions, commands will not be parsed.
+
+- All expressions appeared in the Lambda expression are required to be closed, which means no free vars are allowed.
+
+## Examples
+
+### Conditional branching expression should be like:
 
 `if (expr) then expr else expr`
 
-All the lambda expression should be like this:
+### All the lambda expression should be like:
 
-`\(ID.expr)`
+`\(x.x)`
 
-Try out simple conditional branching:
+### The first term of function application should be in brackets`(E) E`:
 
-`if (-10 > -1) then 30 * 20 else 20 % 2`
+`(\(x.x + 10)) 5`

@@ -64,6 +64,7 @@ def base_step(obj):
                 obj.second = base_step(obj.second)
                 return obj
 
+
 def beta_reduction(obj):
     if isinstance(obj.first, Variable) or isinstance(obj.first, int):
         second = interpret(obj.second)
@@ -77,6 +78,7 @@ def beta_reduction(obj):
         obj.second = interpret(obj.second)
         return interpret(copy.deepcopy(obj))
     else:
+        pass
         # left most
 
 
