@@ -48,29 +48,9 @@ def substitute(uTerm, uToSubstitute, uNewTerm):
     return copy.deepcopy(uTerm)
 
 def substitute_rec(uTerm, uToSubstitute, uNewTerm):
-    if isinstance(uTerm, int):
+    if isinstance(uTerm,Abstraction):
         return copy.deepcopy(uTerm)
-    elif isinstance(uTerm, Variable):
-        if uTerm.name == uToSubstitute.name:
-            return copy.deepcopy(uNewTerm)
-    elif isinstance(uTerm, Application):
-        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
-        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
-    elif isinstance(uTerm,Abstraction):
-        if uTerm.variable.name == uToSubstitute.name:
-            return copy.deepcopy(uTerm)
-        uTerm.body = substitute_rec(uTerm.body, uToSubstitute, uNewTerm)
-    elif isinstance(uTerm, UniOps):
-        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
-    elif isinstance(uTerm, BinOps):
-        uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
-        uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
-    elif isinstance(uTerm, CondBranch):
-        uTerm.cond = substitute_rec(uTerm.cond, uToSubstitute, uNewTerm)
-        uTerm.expr1 = substitute_rec(uTerm.expr1, uToSubstitute, uNewTerm)
-        uTerm.expr2 = substitute_rec(uTerm.expr2, uToSubstitute, uNewTerm)
-    return copy.deepcopy(uTerm)
-
+    return substitute(uTerm, uToSubstitute, uNewTerm)
 
 def recur_reduction(obj, y, Ast):
     if isinstance(obj, int):
@@ -98,7 +78,7 @@ def recur_reduction(obj, y, Ast):
             obj.first = recur_reduction(obj.first, y, Ast)
             obj.second = recur_reduction(obj.second, y, Ast)
         return recur_reduction(obj, y, Ast)
-    
+
 def beta_reduction_rec(obj):
     if isinstance(obj.first, Variable) or isinstance(obj.first, int):
         second = interpret(obj.second)
@@ -171,7 +151,7 @@ def interpret(obj):
 
     elif isinstance(obj, CondBranch):
         obj.cond = interpret(obj.cond)
-        if isinstance(obj.cond, int):
+        if isinstance(obj.cond, bool) or isinstance(obj.cond, bool):
             return interpret(obj.expr1) if obj.cond else interpret(obj.expr2)
         return obj
 
