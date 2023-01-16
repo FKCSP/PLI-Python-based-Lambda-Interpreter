@@ -1,7 +1,7 @@
 import copy
 from my_parser import parser
 from operator import (add, sub, mul, truediv, mod, lt, le, eq, ne, gt, ge)
-from Abstact_Syntax_Tree import Variable, Application, Abstraction, BinOps, UniOps, CondBranch
+from Abstact_Syntax_Tree import Variable, Application, Abstraction, BinOps, UniOps, CondBranch, Recursive
 
 ops = {
     "+": add,
@@ -86,6 +86,11 @@ def beta_reduction(obj):
 def interpret(obj):
     if isinstance(obj, Variable) or isinstance(obj, Abstraction) or isinstance(obj, int):
         return obj
+
+    elif isinstance(obj, Recursive):
+        obj.body = substitute(obj.body, obj.var1, obj.lamb)
+        Abs = Abstraction(obj.var2, obj.body)
+        return Abs
 
     elif isinstance(obj, BinOps):
         first, second = interpret(obj.first), interpret(obj.second)

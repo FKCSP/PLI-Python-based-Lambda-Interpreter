@@ -94,7 +94,7 @@ def p_expr_function_abs_rec(p):
     '''
     expr : REC ID '.' LAMBDA '(' ID '.' expr ')'
     '''
-    pass
+    p[0] = AST.Recursive(AST.Variable(p[2]),AST.Variable(p[6]),p[8])
 
 
 def p_expr_arith(p):
