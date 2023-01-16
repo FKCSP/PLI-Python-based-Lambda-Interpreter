@@ -29,16 +29,27 @@ You can run PLI in the project repository directly via:
 ### The whole shift reduce rules are as follows
 
 '''
+
 E | ID
+
 | NAT
+
 | IF (E) THEN E ELSE E
+
 | (E)
+
 | (E) E
+
 | LAMBDA ( ID . E )
+
 | REC ID . LAMBDA ( ID . E )
+
 | E + E | E - E | E \* E | E / E | E % E
+
 | E < E | E <= E | E > E | E >= E | E == E | E != E
+
 | -E | +E
+
 '''
 
 Input that cannot be completely reduced be the rules will cause an error.
