@@ -18,7 +18,7 @@ class UniArith (object):
     def iswhnf(self):
         return False
 
-class Cond (object):
+class CondBranch (object):
     def __init__ (self, cond, expr1, expr2):
         self.cond = cond
         self.expr1 = expr1
@@ -26,7 +26,7 @@ class Cond (object):
     
     def iswhnf(self):
         return False
-        
+
 class Variable (object):
     def __init__ (self, name: str):
         self.name = name
