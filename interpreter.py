@@ -88,10 +88,17 @@ def recur_reduction(obj, y, Ast):
     elif isinstance(obj, BinOps):
         obj.first = recur_reduction(obj.first, y, Ast)
         obj.second = recur_reduction(obj.second, y, Ast)
+        return interpret(obj)
+    elif isinstance(obj, Abstraction):
+        obj.body = recur_reduction(obj.body, y, Ast)
+        return obj
     elif isinstance(obj, Application):
         obj = beta_reduction(obj)
-
-    return interpret(obj)
+        if isinstance(obj, Application):
+            obj.first = recur_reduction(obj.first, y, Ast)
+            obj.second = recur_reduction(obj.second, y, Ast)
+        return recur_reduction(obj, y, Ast)
+    
 
 
 def beta_reduction(obj):
@@ -107,7 +114,6 @@ def beta_reduction(obj):
         reduced_abs = interpret(obj.first)
         second = interpret(obj.second)
         t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
-        print(t)
         return recur_reduction(t, obj.first.var1, Abs)
 
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
