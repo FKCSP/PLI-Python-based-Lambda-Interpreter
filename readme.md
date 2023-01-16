@@ -26,6 +26,8 @@ You can run PLI in the project repository directly via:
 
 - All expressions appeared in the Lambda expression are required to be closed, which means no free vars are allowed.
 
+- Only integer operations are supported temporarily.
+
 ### The whole shift reduce rules are as follows
 
 ```
@@ -45,6 +47,16 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 ## Examples
 
+### Arithmetic Operation
+
+`>>> 3+4*2`
+
+`8`
+
+`>>> 5*9+9/2-8%5`
+
+`46`
+
 ### IF expression
 
 `>>> if (10 * 9 > 80) then 1 else 0`
@@ -62,6 +74,12 @@ Input that cannot be completely reduced by the rules will cause an error.
 `>>> (\(x.x + 10)) 5`
 
 `15`
+
+### Recursive Function
+
+`>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
+
+`24`
 
 ### Complicated Ones
 
