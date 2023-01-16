@@ -90,7 +90,7 @@ def recur_reduction(obj, y, Ast):
         obj.second = recur_reduction(obj.second, y, Ast)
     elif isinstance(obj, Application):
         obj = beta_reduction(obj)
-        
+
     return interpret(obj)
 
 
@@ -130,17 +130,15 @@ def interpret(obj):
         return Abs
 
     elif isinstance(obj, BinOps):
-        first, second = interpret(obj.first), interpret(obj.second)
-        if isinstance(first, int) and isinstance(second, int):
-            return ops[obj.ops](first, second)
-        obj.first, obj.second = parser.parse(str(first)), parser.parse(str(second))
+        obj.first, obj.second = interpret(obj.first), interpret(obj.second)
+        if isinstance(obj.first, int) and isinstance(obj.second, int):
+            return ops[obj.ops](obj.first, obj.second)
         return obj
 
     elif isinstance(obj, UniOps):
-        first = interpret(obj.first)
-        if isinstance(first, int):
-            return -first if obj.ops == "-" else first
-        obj.first = parser.parse(str(first))
+        obj.first = interpret(obj.first)
+        if isinstance(obj.first, int):
+            return -obj.first if obj.ops == "-" else obj.first
         return obj
 
     elif isinstance(obj, CondBranch):
