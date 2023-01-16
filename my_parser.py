@@ -76,13 +76,6 @@ def p_expr_function_app(p):
     p[0] = AST.Application(p[2], p[4])
 
 
-def p_expr_function_app_rec(p):
-    '''
-    expr : REC ID '.' LAMBDA '(' ID '.' expr ')' expr
-    '''
-    pass
-
-
 def p_expr_function_abs_normal(p):
     '''
     expr : LAMBDA '(' ID '.' expr ')'
