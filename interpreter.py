@@ -170,7 +170,7 @@ def interpret(obj):
 
     elif isinstance(obj, CondBranch):
         obj.cond = interpret(obj.cond)
-        if isinstance(obj.cond, bool) or isinstance(obj.cond, bool):
+        if isinstance(obj.cond, bool) or isinstance(obj.cond, int):
             return interpret(obj.expr1) if obj.cond else interpret(obj.expr2)
         return obj
 
