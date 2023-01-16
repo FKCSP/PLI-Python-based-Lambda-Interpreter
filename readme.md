@@ -29,7 +29,6 @@ You can run PLI in the project repository directly via:
 ### The whole shift reduce rules are as follows
 
 ```
-
 E | ID
   | NAT
   | IF (E) THEN E ELSE E
@@ -40,7 +39,6 @@ E | ID
   | E + E | E - E | E \* E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
-
 ```
 
 Input that cannot be completely reduced by the rules will cause an error.
@@ -57,7 +55,7 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `>>> \(x.x)`
 
-`\(x.x)`
+`(\x.x)`
 
 ### Function Application(The first term should be braced)
 
