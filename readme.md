@@ -51,7 +51,7 @@ Input that cannot be completely reduced be the rules will cause an error.
 
 `>>> if (10 * 9 > 80) then 1 else 0`
 
-`>>> 1`
+`1`
 
 ### Function Abstraction(note that the brackets are mandatory)
 
