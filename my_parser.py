@@ -7,9 +7,10 @@ E | ID
   | NAT
   | IF (E) THEN E ELSE E
   | (E)
-  | lambda ID . expr '(' expr ')'
-  | lambda (ID.E)
-  | rec ID . lambda ID . E
+  | lambda ( ID . E ) E
+  | rec ID . lambda ( ID . E) E
+  | lambda ( ID . E )
+  | rec ID . lambda ( ID . E )
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
@@ -51,10 +52,6 @@ def p_expr_if(p):
     '''
     expr : IF '(' expr ')' THEN expr ELSE expr
     '''
-    # if p[3]:
-    #     p[0] = p[6]
-    # else:
-    #     p[0] = p[8]
     p[0] = AST.CondBranch(p[3],p[6],p[8])
 
 
@@ -65,23 +62,30 @@ def p_expr_paren(p):
     p[0] = p[2]
 
 
-def p_expr_function_app(p):
+def p_expr_function_app_normal(p):
     '''
-    expr : LAMBDA ID '.' expr '(' expr ')'
+    expr : LAMBDA '(' ID '.' expr ')' expr
     '''
-    p[0] = AST.Application(AST.Abstraction(p[2],p[4]), p[6])
+    p[0] = AST.Application(AST.Abstraction(p[3],p[5]), p[7])
 
 
-def p_expr_function_abs(p):
+def p_expr_function_app_rec(p):
     '''
-    expr : LAMBDA  ID '.' expr 
+    expr : REC ID '.' LAMBDA '(' ID '.' expr ')' expr
     '''
-    p[0] = AST.Abstraction(AST.Variable(p[2]), p[4])
+    pass
 
 
-def p_expr_recursive(p):
+def p_expr_function_abs_normal(p):
     '''
-    expr : REC ID '.' '(' LAMBDA ID '.' expr ')'
+    expr : LAMBDA '(' ID '.' expr ')'
+    '''
+    p[0] = AST.Abstraction(AST.Variable(p[3]), p[5])
+
+
+def p_expr_function_abs_rec(p):
+    '''
+    expr : REC ID '.' LAMBDA '(' ID '.' expr ')'
     '''
     pass
 
