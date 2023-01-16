@@ -36,7 +36,7 @@ E | ID
   | (E) E
   | LAMBDA ( ID . E )
   | REC ID . LAMBDA ( ID . E )
-  | E + E | E - E | E \* E | E / E | E % E
+  | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
 ```
