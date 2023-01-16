@@ -1,43 +1,34 @@
-'''
-whnf is short for weak head normal form: which means the expression can no longer be simplief further. The work 'weak' means that although the inner part may not be its simplest form: for example: lambda x: 1+1 is in whnf! While 1+1 is not.
-'''
-class BinOps (object):
+class BinOps(object):
     def __init__ (self, first, second, ops):
         self.first = first
         self.second = second
         self.ops = ops
 
-    def iswhnf(self):
-        return False
-
     def __str__(self):
-        return str(self.first)+' '+self.ops+' '+str(self.second)
+        return str(self.first) + ' ' + self.ops + ' ' + str(self.second)
 
-class UniOps (object):
-    def __init__ (self, first, ops):
+
+class UniOps(object):
+    def __init__(self, first, ops):
         self.first = first
         self.ops = ops
 
-    def iswhnf(self):
-        return False
-
     def __str__(self):
-        return self.ops+str(self.first)
+        return self.ops + str(self.first)
 
-class CondBranch (object):
-    def __init__ (self, cond, expr1, expr2):
+
+class CondBranch(object):
+    def __init__(self, cond, expr1, expr2):
         self.cond = cond
         self.expr1 = expr1
         self.expr2 = expr2
 
-    def iswhnf(self):
-        return False
-    
     def __str__(self):
-        return 'if ('+str(self.cond)+ ') then '+str(self.expr1) + ' else '+str(self.expr2)
+        return 'if ('+ str(self.cond) + ') then ' + str(self.expr1) + ' else ' + str(self.expr2)
 
-class Variable (object):
-    def __init__ (self, name: str):
+
+class Variable(object):
+    def __init__(self, name: str):
         self.name = name
 
     def __str__(self):
@@ -48,9 +39,6 @@ class Variable (object):
             if other.name == self.name:
                 return True
         return False
-
-    def iswhnf(self):
-        return True
 
 
 class Application():
@@ -69,14 +57,6 @@ class Application():
                 (other.second == self.second)
         return False
 
-    def iswhnf(self):
-        if isinstance(self.first, Abstraction) :
-            return False
-        elif isinstance(self.first, Application) :
-            return self._first.iswhnf()
-        else:
-            return True
-
 
 class Abstraction():
     def __init__ (self, var: Variable, body):
@@ -86,14 +66,6 @@ class Abstraction():
     def __str__(self):
         return '(\\' + str(self.variable) + '.' + str(self.body) + ')'
 
-    def __eq__ (self, other):
-        if isinstance(other, Abstraction):
-            return (other.variable == self.variable) and \
-                (other.body == self.body)
-        return False
-
-    def iswhnf(self):
-        return True
 
 class Recursive():
     def __init__(self, var1: Variable, var2: Variable, body):
@@ -101,9 +73,6 @@ class Recursive():
         self.var2 = var2
         self.body = body
         self.lamb = Abstraction(var2, body)
-    
+
     def __str__(self):
         return '(rec ' + str(self.var1) + '.\\' + str(self.var2) + '.' + str(self.body) + ')'
-    
-    def iswhnf(self):
-        return False

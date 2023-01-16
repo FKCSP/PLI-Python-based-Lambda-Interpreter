@@ -116,7 +116,6 @@ def p_expr_arith(p):
         exit(0)
     else:
         p[0] = AST.BinOps(p[1],p[3],p[2])
-        
 
 
 def p_expr_comparisons(p):
