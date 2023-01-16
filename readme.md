@@ -31,24 +31,15 @@ You can run PLI in the project repository directly via:
 ```
 
 E | ID
-
   | NAT
-
   | IF (E) THEN E ELSE E
-
-| (E)
-
-| (E) E
-
-| LAMBDA ( ID . E )
-
-| REC ID . LAMBDA ( ID . E )
-
-| E + E | E - E | E \* E | E / E | E % E
-
-| E < E | E <= E | E > E | E >= E | E == E | E != E
-
-| -E | +E
+  | (E)
+  | (E) E
+  | LAMBDA ( ID . E )
+  | REC ID . LAMBDA ( ID . E )
+  | E + E | E - E | E \* E | E / E | E % E
+  | E < E | E <= E | E > E | E >= E | E == E | E != E
+  | -E | +E
 
 ```
 
