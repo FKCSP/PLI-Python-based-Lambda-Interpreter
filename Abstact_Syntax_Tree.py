@@ -9,7 +9,7 @@ class BiArith (object):
 
     def iswhnf(self):
         return False
-    
+
     def __str__(self):
         return str(self.first)+self.ops+str(self.second)
 
@@ -20,7 +20,7 @@ class UniArith (object):
 
     def iswhnf(self):
         return False
-    
+
     def __str__(self):
         return self.ops+str(self.first)
 
@@ -29,7 +29,7 @@ class CondBranch (object):
         self.cond = cond
         self.expr1 = expr1
         self.expr2 = expr2
-    
+
     def iswhnf(self):
         return False
 

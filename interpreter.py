@@ -1,13 +1,13 @@
 import copy
 from my_parser import parser
-from operator import (add, sub, mul, truediv, mod, lt, le, eq, ne, gt, ge)  
+from operator import (add, sub, mul, truediv, mod, lt, le, eq, ne, gt, ge)
 from Abstact_Syntax_Tree import Variable, Application, Abstraction, BiArith, UniArith, CondBranch
 
-ops = {  
-    "+": add,  
-    "-": sub,  
-    "*": mul,  
-    "/": truediv,  
+ops = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": truediv,
     "%": mod,
     ">": gt,
     ">=": ge,
@@ -15,7 +15,7 @@ ops = {
     "<=": le,
     "==": eq,
     "!=": ne
-    }
+}
 
 def substitute(uTerm, uToSubstitute, uNewTerm):
     if isinstance(uTerm, Variable):
@@ -92,12 +92,12 @@ def interpret(obj):
             return -first if obj.ops == "-" else first
         first = parser.parse(str(first))
         return obj.ops+str(first)
-    
+
     elif isinstance(obj, CondBranch):
         cond = interpret(obj.cond)
         if isinstance(cond,int):
             return interpret(obj.expr1) if cond else interpret(obj.expr2)
         return 'if '+str(cond)+ ' then '+str(obj.expr1) + ' else '+str(obj.expr2)
-    
+
     elif isinstance(obj, Application):
         pass
