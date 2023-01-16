@@ -81,7 +81,7 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `15`
 
-`(\(x. if (x>0) then x else -x)) (-1)`
+`>>> (\(x. if (x>0) then x else -x)) (-1)`
 
 `1`
 
@@ -94,6 +94,7 @@ Input that cannot be completely reduced by the rules will cause an error.
 ### Complicated Ones
 
 `>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
+
 `4`
 
 ## More testcases
