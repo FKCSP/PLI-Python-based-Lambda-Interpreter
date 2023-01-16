@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-PIL is developed based on python package PLY("https://github.com/dabeaz/ply")
+PIL is developed based on python package PLY ("https://github.com/dabeaz/ply")
 
 Use the following command to install depencies:
 
@@ -14,34 +14,75 @@ You can run PLI in the project repository directly via:
 
 `python main.py`
 
-## Rules
-
-
-
 ## Conventions
 
-### Here are a few conventions you should notice when using PLI:
+### Here are a few conventions you should notice when using PLI
 
-- The input format is strictly restricted, illegal format will not be recoginized by the interpreter, you can refer to the **Examples** for a quick start.
+- PLI's small step semantic striclty follows the call by value rule.
 
-- Notice that this interpreter can only interpret expressions, commands will not be parsed.
+- The input format is strictly restricted, illegal format will not be recoginized, you can refer to the **rules** below or **Examples** for a quick start.
+
+- Notice that this interpreter can only interpret expressions, commands are not supported.
 
 - All expressions appeared in the Lambda expression are required to be closed, which means no free vars are allowed.
 
+### The whole shift reduce rules are as follows
+
+'''
+
+E | ID
+
+| NAT
+
+| IF (E) THEN E ELSE E
+
+| (E)
+
+| (E) E
+
+| LAMBDA ( ID . E )
+
+| REC ID . LAMBDA ( ID . E )
+
+| E + E | E - E | E \* E | E / E | E % E
+
+| E < E | E <= E | E > E | E >= E | E == E | E != E
+
+| -E | +E
+
+'''
+
+Input that cannot be completely reduced be the rules will cause an error.
+
 ## Examples
 
-### Conditional branching expression should be like:
+### IF expression
 
-`if (expr) then expr else expr`
+`>>> if (10 * 9 > 80) then 1 else 0`
 
-### All the lambda expression should be like:
+`>>> 1`
 
-`\(x.x)`
+### Function Abstraction(note that the brackets are mandatory)
 
-### The first term of function application should be in brackets`(E) E`:
+`>>> \(x.x)`
 
-`(\(x.x + 10)) 5`
+`>>> \(x.x)`
 
-### Some complicated examples:
+### Function Application(The first term should be braced)
 
-`((\(f.\(x. (f) x))) \(x. x+x) ) 2`
+`>>> (\(x.x + 10)) 5`
+
+`>>> 15`
+
+### Complicated Ones
+
+`>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
+`>>> 4`
+
+## More testcases
+
+To view more tricky test cases, find them in **test_cases.txt**
+
+You can run those cases by typing the following command in CLI:
+
+`run test_cases.txt`
