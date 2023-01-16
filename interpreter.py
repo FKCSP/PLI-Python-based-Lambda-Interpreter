@@ -106,12 +106,6 @@ def beta_reduction_rec(obj):
         second = interpret(obj.second)
         t =  substitute_rec(obj.first.body, obj.first.variable, second)
         return interpret(t)
-    # elif isinstance(obj.first, Recursive):
-    #     Abs = obj.first.lamb
-    #     reduced_abs = interpret(obj.first)
-    #     second = interpret(obj.second)
-    #     t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
-    #     return recur_reduction(t, obj.first.var1, Abs)
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
         obj.first = interpret(obj.first)
         obj.second = interpret(obj.second)
@@ -134,7 +128,7 @@ def beta_reduction(obj):
         reduced_abs = interpret(obj.first)
         second = interpret(obj.second)
         t = substitute_rec(reduced_abs.body, reduced_abs.variable, second)
-        print(t)
+        #print(t)
         return recur_reduction(t, obj.first.var1, Abs)
 
     elif isinstance(obj.first, BinOps) or isinstance(obj.first, UniOps) or isinstance(obj.first, CondBranch):
