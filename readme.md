@@ -57,6 +57,12 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `46`
 
+### Comparison
+
+`>>> 3*8 < 10-4`
+
+`0`
+
 ### IF expression
 
 `>>> if (10 * 9 > 80) then 1 else 0`
@@ -74,6 +80,10 @@ Input that cannot be completely reduced by the rules will cause an error.
 `>>> (\(x.x + 10)) 5`
 
 `15`
+
+`(\(x. if (x>0) then x else -x)) (-1)`
+
+`1`
 
 ### Recursive Function
 
