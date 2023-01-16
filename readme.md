@@ -14,6 +14,10 @@ You can run PLI in the project repository directly via:
 
 `python main.py`
 
+## Rules
+
+
+
 ## Conventions
 
 ### Here are a few conventions you should notice when using PLI:
@@ -37,3 +41,7 @@ You can run PLI in the project repository directly via:
 ### The first term of function application should be in brackets`(E) E`:
 
 `(\(x.x + 10)) 5`
+
+### Some complicated examples:
+
+`((\(f.\(x. (f) x))) \(x. x+x) ) 2`
