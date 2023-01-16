@@ -26,6 +26,8 @@ You can run PLI in the project repository directly via:
 
 - All expressions appeared in the Lambda expression are required to be closed, which means no free vars are allowed.
 
+- Only integer operations are supported temporarily.
+
 ### The whole shift reduce rules are as follows
 
 ```
