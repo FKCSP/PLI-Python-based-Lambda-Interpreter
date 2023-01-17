@@ -97,6 +97,12 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `4`
 
+Fibonacci function
+
+`>>> (rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else ((y)(x-1)+(y)(x-2))) ) ) 4`
+
+`5`
+
 ## More testcases
 
 To view more tricky test cases, find them in **test_cases.txt**
