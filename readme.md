@@ -4,7 +4,7 @@
 
 PIL is developed based on python package PLY ("https://github.com/dabeaz/ply")
 
-Use the following command to install depencies:
+Use the following command to install dependencies:
 
 `pip install PLY`
 
