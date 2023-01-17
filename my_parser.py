@@ -7,9 +7,9 @@ E | F
   | E F
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
+  | -E | +E
 F | ID
   | NAT
-  | -E | +E
   | IF (E) THEN E ELSE E
   | (E)
   | lambda ( ID . E )
