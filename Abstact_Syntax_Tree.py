@@ -47,7 +47,7 @@ class Application():
         self.second = second
 
     def __str__ (self):
-        left = str(self.first) if (isinstance(self.first, int) or isinstance(self.first, Variable) or isinstance(self.first, Abstraction)) else '('+str(self.first)+')'
+        left = '('+str(self.first)+')'
         right = str(self.second) if (isinstance(self.second, int) or isinstance(self.second, Variable) or isinstance(self.second, Abstraction)) else '('+str(self.second)+')'
         return left + ' ' + right
 
@@ -64,7 +64,7 @@ class Abstraction():
         self.body = body
 
     def __str__(self):
-        return '(\\' + str(self.variable) + '.' + str(self.body) + ')'
+        return '\\(' + str(self.variable) + '.' + str(self.body) + ')'
 
 
 class Recursive():
@@ -75,4 +75,4 @@ class Recursive():
         self.lamb = Abstraction(var2, body)
 
     def __str__(self):
-        return 'rec ' + str(self.var1) + '.\\' + str(self.var2) + '.' + str(self.body)
+        return 'rec ' + str(self.var1) + '.\\(' + str(self.var2) + '.' + str(self.body) +')'

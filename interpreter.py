@@ -4,7 +4,7 @@ from operator import (add, sub, mul, truediv, mod, lt, le, eq, ne, gt, ge)
 from Abstact_Syntax_Tree import Variable, Application, Abstraction, BinOps, UniOps, CondBranch, Recursive
 
 import sys
-sys.setrecursionlimit(100)
+sys.setrecursionlimit(1000)
 
 ops = {
     "+": add,
