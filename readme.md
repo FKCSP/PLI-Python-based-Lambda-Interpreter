@@ -30,7 +30,7 @@ You can run PLI in the project repository directly via:
 
 - Arithmetic operation takes precedence over function application, so please add brackets to arithmetic operations if necessary. eg. `\(x.x+x)(2+3)` and `\(x.x+x)2+3` are different.
 
-- If the expression e3 of  `if (e1) then e2 else e3` is not NAT, Variable or function application, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
+- If the expression e3 of `if (e1) then e2 else e3` is not NAT, Variable or function application, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
 
 - We set a limit on the recursion depth, so the function application with too deep recursion depth may report an error. For recursive functions with infinite loops, `RecursionError` will be returned. eg. `(rec y. \(x. if (x>0) then 0 else (y)(x-1))) 0`
 
@@ -67,7 +67,7 @@ recursive function: rec y.\(x. expr)
 
 `>>> 3+4*2`
 
-`8`
+`11`
 
 `>>> 5*9+9/2-8%5`
 
@@ -108,11 +108,11 @@ Factorial function
 `>>> rec y. \(x. if (x>0) then (y)(x-1)*x else 1)`
 
 `\(x.if (x > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (x - 1) * x else 1)`
- 
+
 `>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) z`
 
 `if (z > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (z - 1) * z else 1`
- 
+
 `>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
 
 `24`
@@ -141,8 +141,8 @@ Functions which may have infinite loops
 
 ## More testcases
 
-To view more tricky test cases, find them in **test_cases.txt**
+We provide more test cases, find them in **test_cases.txt**
 
-You can run those cases by typing the following command in CLI:
+You can run them by typing the following command in PLI's CLI:
 
 `run test_cases.txt`
