@@ -47,7 +47,7 @@ class Application():
         self.second = second
 
     def __str__ (self):
-        left = '('+str(self.first)+')'
+        left = str(self.first) if (isinstance(self.first, int) or isinstance(self.first, Variable) or isinstance(self.first, Abstraction)) else '('+str(self.first)+')'
         right = str(self.second) if (isinstance(self.second, int) or isinstance(self.second, Variable) or isinstance(self.second, Abstraction)) else '('+str(self.second)+')'
         return left + ' ' + right
 

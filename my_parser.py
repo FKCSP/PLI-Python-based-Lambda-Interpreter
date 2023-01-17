@@ -3,20 +3,21 @@ from my_lexer import tokens
 import Abstact_Syntax_Tree as AST
 
 '''
-E | ID
-  | NAT
-  | IF (E) THEN E ELSE E
-  | (E)
-  | (E) E
-  | lambda ( ID . E )
-  | rec ID . lambda ( ID . E )
+E | F
+  | E F
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
+F | ID
+  | NAT
   | -E | +E
+  | IF (E) THEN E ELSE E
+  | (E)
+  | lambda ( ID . E )
+  | rec ID . lambda ( ID . E )
 '''
 
 '''
-terminal states：
+terminal states:
 V
 NAT
 lambda ( ID . E )
@@ -40,52 +41,57 @@ precedence = (
     ('left', '(', ')'),
 )
 
+def p_start(p):
+    '''
+    expr : factor
+    '''
+    p[0] = p[1]
 
 def p_expr_ID(p):
     '''
-    expr : ID
+    factor : ID
     '''
     p[0] = AST.Variable(p[1])
 
 
 def p_expr_NAT(p):
     '''
-    expr : NAT
+    factor : NAT
     '''
     p[0] = int(p[1])
 
 
 def p_expr_if(p):
     '''
-    expr : IF '(' expr ')' THEN expr ELSE expr
+    factor : IF '(' expr ')' THEN expr ELSE expr
     '''
     p[0] = AST.CondBranch(p[3],p[6],p[8])
 
 
 def p_expr_paren(p):
     '''
-    expr : '(' expr ')'
+    factor : '(' expr ')'
     '''
     p[0] = p[2]
 
 
 def p_expr_function_app(p):
     '''
-    expr : '(' expr ')' expr
+    expr : expr factor
     '''
-    p[0] = AST.Application(p[2], p[4])
+    p[0] = AST.Application(p[1], p[2])
 
 
 def p_expr_function_abs_normal(p):
     '''
-    expr : LAMBDA '(' ID '.' expr ')'
+    factor : LAMBDA '(' ID '.' expr ')'
     '''
     p[0] = AST.Abstraction(AST.Variable(p[3]), p[5])
 
 
 def p_expr_function_abs_rec(p):
     '''
-    expr : REC ID '.' LAMBDA '(' ID '.' expr ')'
+    factor : REC ID '.' LAMBDA '(' ID '.' expr ')'
     '''
     p[0] = AST.Recursive(AST.Variable(p[2]),AST.Variable(p[6]),p[8])
 

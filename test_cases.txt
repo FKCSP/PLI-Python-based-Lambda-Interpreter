@@ -1,8 +1,8 @@
 19+9%2*8-10
 20+x*8-2*8
-((\(f.\(x.(f) x + 20 * 2))) \(x.if (x > 0) then 3 else 4)) 5
-(\(f.(f) x + 3 + 4 + 5)) \(x.x)
-( rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else ((y)(x-1)+(y)(x-2))) ) ) 4
+\(f.\(x.f x + 20 * 2)) \(x.if (x > 0) then 3 else 4) 5
+\(f.(f) x + 3 + 4 + 5) \(x.x)
+rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else ((y)(x-1)+(y)(x-2))))  4
 rec y. \(x. if (x>0) then (y)(x-1)*x else 1)
 (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) z
 (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 3
