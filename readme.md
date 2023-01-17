@@ -30,7 +30,7 @@ You can run PLI in the project repository directly via:
 
 - Arithmetic operation takes precedence over function application, so please add brackets to arithmetic operations if necessary. eg. `\(x.x+x)(2+3)` and `\(x.x+x)2+3` are different.
 
-- If the expression e3 of  `if (e1) then e2 else e3` is not NAT or Variable, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
+- If the expression e3 of  `if (e1) then e2 else e3` is not NAT, Variable or function application, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
 
 - We set a limit on the recursion depth, so the function application with too deep recursion depth may report an error. For recursive functions with infinite loops, `RecursionError` will be returned. eg. `(rec y. \(x. if (x>0) then 0 else (y)(x-1))) 0`
 
@@ -50,6 +50,16 @@ E | ID
 ```
 
 Input that cannot be completely reduced by the rules will cause an error.
+
+### How to use
+
+```
+arithmetic operations or comparisons: eg.2+4*8 or x/3+9
+conditional branch: if (e1) then e2 else e3
+function abstraction: \(x. expr)
+function application: (e1) e2 or ((e1) e2) e3 ...
+recursive function: rec y.\(x. expr)
+```
 
 ## Examples
 
