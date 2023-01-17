@@ -148,7 +148,7 @@ def interpret(obj):
         return obj
 
     elif isinstance(obj, Recursive):
-        obj.body = substitute(obj.body, obj.var1, obj.lamb)
+        obj.body = substitute(obj.body, obj.var1, obj)
         Abs = Abstraction(obj.var2, obj.body)
         return Abs
 
