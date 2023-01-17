@@ -23,6 +23,7 @@ ops = {
 def substitute(uTerm, uToSubstitute, uNewTerm):
     if isinstance(uTerm, int):
         return copy.deepcopy(uTerm)
+
     elif isinstance(uTerm, Variable):
         if uTerm.name == uToSubstitute.name:
             return copy.deepcopy(uNewTerm)
@@ -63,11 +64,9 @@ def substitute_rec(uTerm, uToSubstitute, uNewTerm):
         uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
     elif isinstance(uTerm, UniOps):
         uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
-
     elif isinstance(uTerm, BinOps):
         uTerm.first = substitute_rec(uTerm.first, uToSubstitute, uNewTerm)
         uTerm.second = substitute_rec(uTerm.second, uToSubstitute, uNewTerm)
-
     elif isinstance(uTerm, CondBranch):
         uTerm.cond = substitute_rec(uTerm.cond, uToSubstitute, uNewTerm)
         uTerm.expr1 = substitute_rec(uTerm.expr1, uToSubstitute, uNewTerm)
@@ -157,6 +156,20 @@ def interpret(obj):
         obj.first, obj.second = interpret(obj.first), interpret(obj.second)
         if isinstance(obj.first, int) and isinstance(obj.second, int):
             return int(ops[obj.ops](obj.first, obj.second))
+        elif obj.ops=='*' and ((isinstance(obj.second, int) and obj.second == 0) or (isinstance(obj.first, int) and obj.first == 0)):
+            return 0
+        elif isinstance(obj.first, int):
+            return BinOps(obj.second, obj.first, obj.ops)
+        elif isinstance(obj.second, int) and isinstance(obj.first, BinOps) and isinstance(obj.first.second, int):
+            if  obj.first.ops == '+':
+                second = int(ops[obj.ops](obj.first.second, obj.second))
+                return BinOps(obj.first.first, second, '+') if second > 0 else BinOps(obj.first.first, -second, '-')
+            elif obj.first.ops == '-':
+                second = int(ops[obj.ops](obj.first.second, -obj.second))
+                return BinOps(obj.first.first, second, '-') if second > 0 else BinOps(obj.first.first, -second, '+')
+            elif obj.first.ops == '*':
+                second = int(ops[obj.ops](obj.first.second, obj.second))
+                return BinOps(obj.first.first, second, '*') if second != 0 else 0
         return obj
 
     elif isinstance(obj, UniOps):
