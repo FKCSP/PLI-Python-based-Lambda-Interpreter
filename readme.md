@@ -28,6 +28,8 @@ You can run PLI in the project repository directly via:
 
 - Only integer operations are supported temporarily.
 
+- Arithmetic operation takes precedence over function application and conditional branch, so please add brackets to arithmetic operations if necessary. eg. `\(x. if (x==0) then 1 else (x+1) )`
+
 ### The whole shift reduce rules are as follows
 
 ```
