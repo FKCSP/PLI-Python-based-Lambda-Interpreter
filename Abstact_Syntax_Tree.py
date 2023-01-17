@@ -75,4 +75,4 @@ class Recursive():
         self.lamb = Abstraction(var2, body)
 
     def __str__(self):
-        return '(rec ' + str(self.var1) + '.\\' + str(self.var2) + '.' + str(self.body) + ')'
+        return 'rec ' + str(self.var1) + '.\\' + str(self.var2) + '.' + str(self.body)
