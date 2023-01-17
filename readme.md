@@ -32,6 +32,8 @@ You can run PLI in the project repository directly via:
 
 - If the expression e3 of  `if (e1) then e2 else e3` is not NAT or Variable, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
 
+- We set a limit on the recursion depth, so the function application with too deep recursion depth may report an error
+
 ### The whole shift reduce rules are as follows
 
 ```
