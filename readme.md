@@ -87,21 +87,23 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 ### Recursive Function
 
+Factorial function
+
 `>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
 
 `24`
-
-### Complicated Ones
-
-`>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
-
-`4`
 
 Fibonacci function
 
 `>>> (rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else ((y)(x-1)+(y)(x-2))) ) ) 4`
 
 `5`
+
+### Complicated Ones
+
+`>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
+
+`4`
 
 ## More testcases
 
