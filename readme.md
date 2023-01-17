@@ -28,7 +28,11 @@ You can run PLI in the project repository directly via:
 
 - Only integer operations are supported temporarily.
 
-- Arithmetic operation takes precedence over function application and conditional branch, so please add brackets to arithmetic operations if necessary. eg. `\(x. if (x==0) then 1 else (x+1) )`
+- Arithmetic operation takes precedence over function application, so please add brackets to arithmetic operations if necessary. eg. `\(x.x+x)(2+3)` and `\(x.x+x)2+3` are different.
+
+- If the expression e3 of `if (e1) then e2 else e3` is not NAT, Variable or function application, it should be parenthesized as well. eg. `\(x. if (x==0) then 1 else (x-1))`.
+
+- We set a limit on the recursion depth, so the function application with too deep recursion depth may report an error. For recursive functions with infinite loops, `RecursionError` will be returned. eg. `(rec y. \(x. if (x>0) then 0 else (y)(x-1))) 0`
 
 ### The whole shift reduce rules are as follows
 
@@ -47,13 +51,23 @@ E | ID
 
 Input that cannot be completely reduced by the rules will cause an error.
 
+### How to use
+
+```
+arithmetic operations or comparisons: eg.2+4*8 or x/3+9
+conditional branch: if (e1) then e2 else e3
+function abstraction: \(x. expr)
+function application: (e1) e2 or ((e1) e2) e3 ...
+recursive function: rec y.\(x. expr)
+```
+
 ## Examples
 
 ### Arithmetic Operation
 
 `>>> 3+4*2`
 
-`8`
+`11`
 
 `>>> 5*9+9/2-8%5`
 
@@ -75,7 +89,7 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 `>>> \(x.x)`
 
-`(\x.x)`
+`\(x.x)`
 
 ### Function Application(The first term should be braced)
 
@@ -91,6 +105,14 @@ Input that cannot be completely reduced by the rules will cause an error.
 
 Factorial function
 
+`>>> rec y. \(x. if (x>0) then (y)(x-1)*x else 1)`
+
+`\(x.if (x > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (x - 1) * x else 1)`
+
+`>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) z`
+
+`if (z > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (z - 1) * z else 1`
+
 `>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
 
 `24`
@@ -101,6 +123,16 @@ Fibonacci function
 
 `5`
 
+Functions which may have infinite loops
+
+`>>> (rec y. \(x. if (x>0) then 0 else (y)(x-1))) 1`
+
+`0`
+
+`>>> (rec y. \(x. if (x>0) then 0 else (y)(x-1))) 0`
+
+`RecursionError: maximum recursion depth exceeded`
+
 ### Complicated Ones
 
 `>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
@@ -109,8 +141,8 @@ Fibonacci function
 
 ## More testcases
 
-To view more tricky test cases, find them in **test_cases.txt**
+We provide more test cases, find them in **test_cases.txt**
 
-You can run those cases by typing the following command in CLI:
+You can run them by typing the following command in PLI's CLI:
 
 `run test_cases.txt`
