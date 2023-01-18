@@ -37,16 +37,17 @@ You can run PLI in the project repository directly via:
 ### The whole shift reduce rules are as follows
 
 ```
-E | ID
-  | NAT
-  | IF (E) THEN E ELSE E
-  | (E)
-  | (E) E
-  | LAMBDA ( ID . E )
-  | REC ID . LAMBDA ( ID . E )
+E | F
+  | E F
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
+F | ID
+  | NAT
+  | IF (E) THEN E ELSE E
+  | (E)
+  | lambda ( ID . E )
+  | rec ID . lambda ( ID . E )
 ```
 
 Input that cannot be completely reduced by the rules will cause an error.
@@ -56,8 +57,8 @@ Input that cannot be completely reduced by the rules will cause an error.
 ```
 arithmetic operations or comparisons: eg.2+4*8 or x/3+9
 conditional branch: if (e1) then e2 else e3
-function abstraction: \(x. expr)
-function application: (e1) e2 or ((e1) e2) e3 ...
+function abstraction: \(x. expr) or \(x.\(y.x+y))
+function application(left associative): e1 e2 
 recursive function: rec y.\(x. expr)
 ```
 
@@ -93,29 +94,37 @@ recursive function: rec y.\(x. expr)
 
 ### Function Application(The first term should be braced)
 
-`>>> (\(x.x + 10)) 5`
+`>>> f x`
+
+`f x`
+
+`>>> \(x.x + 10) 5`
 
 `15`
 
-`>>> (\(x. if (x>0) then x else -x)) (-1)`
+`>>> \(x. if (x>0) then x else -x) (-1)`
 
 `1`
+
+`>>> \(x.\(y. x y)) \(x.x+x)`
+
+`\(y.\(x.x + x) y)`
 
 ### Recursive Function
 
 Factorial function
 
-`>>> rec y. \(x. if (x>0) then (y)(x-1)*x else 1)`
+`>>> rec y. \(x. if (x>0) then y(x-1)*x else 1)`
 
-`\(x.if (x > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (x - 1) * x else 1)`
+`\(x.if (x > 0) then (rec y.\(x.if (x > 0) then y (x - 1) * x else 1)) (x - 1) * x else 1)`
 
-`>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) z`
+`>>> (rec y. \(x. if (x>0) then y(x-1)*x else 1)) z`
 
-`if (z > 0) then (rec y.\(x.if (x > 0) then (y) (x - 1) * x else 1)) (z - 1) * z else 1`
+`if (z > 0) then (rec y.\(x.if (x > 0) then y (x - 1) * x else 1)) (z - 1) * z else 1`
 
-`>>> (rec y. \(x. if (x>0) then (y)(x-1)*x else 1)) 4`
+`>>> (rec y. \(x. if (x>0) then y(x-1)*x else 1)) 5`
 
-`24`
+`120`
 
 Fibonacci function
 
@@ -125,19 +134,13 @@ Fibonacci function
 
 Functions which may have infinite loops
 
-`>>> (rec y. \(x. if (x>0) then 0 else (y)(x-1))) 1`
+`>>> (rec y. \(x. if (x>0) then 0 else y(x-1))) 1`
 
 `0`
 
-`>>> (rec y. \(x. if (x>0) then 0 else (y)(x-1))) 0`
+`>>> (rec y. \(x. if (x>0) then 0 else y(x-1))) 0`
 
 `RecursionError: maximum recursion depth exceeded`
-
-### Complicated Ones
-
-`>>> ((\(f.\(x. (f) x))) \(x. x+x) ) 2`
-
-`4`
 
 ## More testcases
 
