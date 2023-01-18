@@ -128,7 +128,7 @@ Factorial function
 
 Fibonacci function
 
-`>>> (rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else ((y)(x-1)+(y)(x-2))) ) ) 4`
+`>>> rec y. \(x. if (x==0) then 1 else (if (x==1) then 1 else (y(x-1)+y(x-2))) )  4`
 
 `5`
 
