@@ -92,7 +92,7 @@ recursive function: rec y.\(x. expr)
 
 `\(x.x)`
 
-### Function Application(The first term should be braced)
+### Function Application
 
 `>>> f x`
 
