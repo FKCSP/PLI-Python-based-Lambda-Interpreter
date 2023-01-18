@@ -3,7 +3,7 @@ from interpreter import beta_reduction, interpret
 from cmd import Cmd
 
 import sys
-sys.setrecursionlimit(100)
+#sys.setrecursionlimit(100)
 
 PROMPT = '>>>'
 INTRO_STR = \

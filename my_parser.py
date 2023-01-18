@@ -8,9 +8,9 @@ E | F
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
+  | IF (E) THEN E ELSE E
 F | ID
   | NAT
-  | IF (E) THEN E ELSE E
   | (E)
   | lambda ( ID . E )
   | rec ID . lambda ( ID . E )
@@ -63,7 +63,7 @@ def p_expr_NAT(p):
 
 def p_expr_if(p):
     '''
-    factor : IF '(' expr ')' THEN expr ELSE expr
+    expr : IF '(' expr ')' THEN expr ELSE expr
     '''
     p[0] = AST.CondBranch(p[3],p[6],p[8])
 

@@ -24,7 +24,8 @@ class CondBranch(object):
         self.expr2 = expr2
 
     def __str__(self):
-        return 'if ('+ str(self.cond) + ') then ' + str(self.expr1) + ' else ' + str(self.expr2)
+        expr2 = '('+str(self.expr2)+')' if (isinstance(self.expr2, BinOps) or isinstance(self.expr2, UniOps) or isinstance(self.expr2, CondBranch)) else str(self.expr2)
+        return 'if ('+ str(self.cond) + ') then ' + str(self.expr1) + ' else ' + expr2
 
 
 class Variable(object):
