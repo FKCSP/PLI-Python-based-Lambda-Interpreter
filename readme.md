@@ -42,9 +42,9 @@ E | F
   | E + E | E - E | E * E | E / E | E % E
   | E < E | E <= E | E > E | E >= E | E == E | E != E
   | -E | +E
+  | IF (E) THEN E ELSE E
 F | ID
   | NAT
-  | IF (E) THEN E ELSE E
   | (E)
   | lambda ( ID . E )
   | rec ID . lambda ( ID . E )
